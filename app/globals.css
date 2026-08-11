@@ -1,26 +1,192 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================================
+   MAHINDRA RISE — Executive Luxury White & Ember Design System
+   ============================================================ */
 
+/* ----------------------------------------------------------
+   Tailwind v4 @theme block — Premium Alabaster Palette
+   ---------------------------------------------------------- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Palette: Luxury Alabaster, Pure White & Ember */
+  --color-ink-900: #F4F4F6;
+  --color-ink-800: #FFFFFF;
+  --color-ink-700: #EAEBED;
+  --color-line: #E1E3E8;
+  --color-bone: #0F1012;
+  --color-bone-dim: #505562;
+  --color-ember: #DC3A2C;
+  --color-ember-dim: #B82E22;
+  --color-gold: #B8860B;
+
+  /* Semantic aliases */
+  --color-background: var(--color-ink-900);
+  --color-foreground: var(--color-bone);
+
+  /* Font families (mapped to CSS vars set by next/font) */
+  --font-display: var(--font-bebas-neue);
+  --font-body: var(--font-satoshi);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ----------------------------------------------------------
+   Base styles
+   ---------------------------------------------------------- */
+html {
+  background-color: var(--color-ink-900);
+  color: var(--color-bone);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink-900);
+  color: var(--color-bone);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Selection styling — ember background with white text */
+::selection {
+  background-color: var(--color-ember);
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background-color: var(--color-ember);
+  color: #FFFFFF;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ink-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ember);
+}
+
+/* Focus ring — visible ember ring */
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 3px;
+}
+
+/* ----------------------------------------------------------
+   Luxury Card Elevation Shadows
+   ---------------------------------------------------------- */
+.luxury-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(15, 16, 18, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: var(--color-ember);
+  box-shadow: 0 20px 45px rgba(220, 58, 44, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  transform: translateY(-6px);
+}
+
+/* ----------------------------------------------------------
+   Type Scale Utilities
+   ---------------------------------------------------------- */
+
+/* Display hero — used for page titles */
+.t-hero {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(56px, 9vw, 200px);
+  font-weight: 400; /* Bebas Neue only has 400 */
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.88;
+  color: var(--color-bone);
+}
+
+/* Heading 1 — section titles */
+.t-h1 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(40px, 5.5vw, 96px);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: var(--color-bone);
+}
+
+/* Heading 2 — sub-section titles */
+.t-h2 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(28px, 3.4vw, 56px);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.0;
+  color: var(--color-bone);
+}
+
+/* Lead — large body text */
+.t-lead {
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(20px, 1.6vw, 28px);
+  line-height: 1.5;
+  color: var(--color-bone-dim);
+  max-width: 62ch;
+}
+
+/* Body — standard text */
+.t-body {
+  font-family: var(--font-body), sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--color-bone-dim);
+  max-width: 68ch;
+}
+
+/* Label — mono eyebrow labels */
+.t-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-bone-dim);
+}
+
+/* ----------------------------------------------------------
+   Hairline dividers
+   ---------------------------------------------------------- */
+.hairline {
+  height: 1px;
+  background-color: var(--color-line);
+  width: 100%;
+}
+
+.hairline-v {
+  width: 1px;
+  background-color: var(--color-line);
+  height: 100%;
+}
+
+/* ----------------------------------------------------------
+   Reduced motion — global kill switch
+   ---------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
