@@ -1,108 +1,89 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-import Image from "next/image";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Section, Container, Grid } from "@/components/layout";
-import { shouldDisableWebGL, getReducedMotion } from "@/lib/motion";
+import { Section, Container } from "@/components/layout";
+import { getReducedMotion } from "@/lib/motion";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Dynamically import Three.js scene with ssr:false
-const PerformanceScene = dynamic(
-  () => import("./PerformanceScene").then((mod) => mod.PerformanceScene),
-  { ssr: false }
-);
-
-const STATIC_FALLBACK_IMAGES = [
-  { name: "Automotive & Farm", src: "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Automotive_.webp" },
-  { name: "Farm Machinery", src: "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Farming_%20%281%29.webp" },
-  { name: "Finance & Tech", src: "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Financial%20Services.webp" },
-  { name: "Tech Mahindra", src: "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Technology%20Services.webp" },
-  { name: "Hospitality Gems", src: "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do%203.webp" },
-  { name: "Logistics", src: "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Logistics%20Services.webp" },
+const cards = [
+  {
+    title: "AUTOMOTIVE & FARM EQUIPMENT",
+    image: "/p1.webp",
+  },
+  {
+    title: "FINANCE & TECHNOLOGY",
+    image: "/p2.webp",
+  },
+  {
+    title: "GROWTH GEMS",
+    image: "/p3.webp",
+  },
 ];
 
 export function PerformanceDriven() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [useFallback, setUseFallback] = useState(false);
-
-  useEffect(() => {
-    setUseFallback(shouldDisableWebGL() || getReducedMotion());
-  }, []);
 
   useGSAP(
     () => {
       const section = sectionRef.current;
-      if (!section || useFallback) return;
+      if (!section || getReducedMotion()) return;
 
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top bottom",
-        end: "bottom top",
-        onUpdate: (self) => {
-          setScrollProgress(self.progress);
+      gsap.from(".performance-card", {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
         },
       });
     },
-    { scope: sectionRef, dependencies: [useFallback] }
+    { scope: sectionRef }
   );
 
   return (
     <Section ref={sectionRef} className="bg-ink-900 overflow-hidden relative">
-      <Container className="relative z-20 pointer-events-none mb-12">
-        <p className="t-label text-ember mb-4">(04) PERFORMANCE DRIVEN</p>
-        <h2 className="t-h1 max-w-[18ch]">MARKET LEADERSHIP IN INDIA</h2>
+      <Container className="relative z-20">
+        <p className="font-mono text-sm uppercase tracking-wider font-medium text-black mb-4">(04) PERFORMANCE DRIVEN</p>
+        <h2 className="font-display text-4xl uppercase leading-[0.9] max-w-[20ch] mb-8 lg:mb-12 text-black">
+          MARKET LEADERSHIP IN INDIA
+        </h2>
 
-        {/* Highlight Labels */}
-        <div className="mt-8 flex flex-wrap items-center gap-6 pointer-events-auto">
-          <span className="t-label rounded-full border border-ember bg-ink-800/80 px-4 py-2 text-ember">
-            AUTOMOTIVE &amp; FARM EQUIPMENT
-          </span>
-          <span className="t-label rounded-full border border-line bg-ink-800/80 px-4 py-2 text-bone-dim">
-            FINANCE &amp; TECHNOLOGY
-          </span>
-          <span className="t-label rounded-full border border-line bg-ink-800/80 px-4 py-2 text-bone-dim">
-            GROWTH GEMS
-          </span>
+        {/* 3 Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              className="performance-card group relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5]  overflow-hidden border border-line/30 bg-ink-800 shadow-sm"
+            >
+              {/* Image */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={card.image}
+                alt={card.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+
+
+              {/* Title at Top */}
+              <div className="absolute top-0 left-0 right-0 p-6 lg:p-8 z-10">
+                <h3 className="font-display text-lg lg:text-xl uppercase tracking-wider text-white leading-tight">
+                  {card.title}
+                </h3>
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
-
-      {/* Main Content Viewport */}
-      {!useFallback ? (
-        <div className="relative h-[65vh] min-h-[480px] w-full">
-          <PerformanceScene scrollProgress={scrollProgress} />
-        </div>
-      ) : (
-        /* Static CSS Grid Fallback for Mobile / Low-Memory */
-        <Container>
-          <Grid cols={3} className="gap-6 pt-6">
-            {STATIC_FALLBACK_IMAGES.map((img) => (
-              <div
-                key={img.name}
-                className="relative h-64 overflow-hidden rounded-xl bg-ink-800 border border-line"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.name}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-900 to-transparent" />
-                <span className="t-label absolute bottom-4 left-4 z-10 text-bone">
-                  {img.name}
-                </span>
-              </div>
-            ))}
-          </Grid>
-        </Container>
-      )}
     </Section>
   );
 }

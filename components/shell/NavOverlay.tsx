@@ -145,7 +145,7 @@ export function NavOverlay({ isOpen, onClose }: NavOverlayProps) {
       {/* Background Image Preview that follows cursor */}
       <div
         ref={previewRef}
-        className="pointer-events-none fixed left-0 top-0 z-0 h-[280px] w-[420px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl opacity-0 shadow-2xl transition-opacity duration-300 will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 z-0 h-[280px] w-[420px] -translate-x-1/2 -translate-y-1/2 overflow-hidden opacity-0 shadow-2xl transition-opacity duration-300 will-change-transform"
         style={{ opacity: activeImage ? 0.85 : 0 }}
       >
         {activeImage && (
@@ -161,10 +161,10 @@ export function NavOverlay({ isOpen, onClose }: NavOverlayProps) {
 
       {/* Header close trigger */}
       <div className="relative z-10 flex items-center justify-between border-b border-line pb-8">
-        <span className="t-label text-ember">NAVIGATION</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">NAVIGATION</span>
         <button
           onClick={onClose}
-          className="t-label flex items-center gap-2 text-bone transition-colors hover:text-ember"
+          className="font-mono text-xs uppercase tracking-wider font-medium flex items-center gap-2 text-bone transition-colors hover:text-ember"
           onMouseEnter={() => setVariant("ring")}
           onMouseLeave={() => setVariant("default")}
         >
@@ -192,10 +192,10 @@ export function NavOverlay({ isOpen, onClose }: NavOverlayProps) {
                 setVariant("default");
               }}
             >
-              <span className="t-label text-bone-dim transition-colors group-hover:text-ember">
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim transition-colors group-hover:text-ember">
                 {link.num}
               </span>
-              <span className="t-h1">{link.label}</span>
+              <span className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95]">{link.label}</span>
             </Link>
           </div>
         ))}
@@ -204,16 +204,16 @@ export function NavOverlay({ isOpen, onClose }: NavOverlayProps) {
       {/* Footer Info inside Overlay */}
       <div className="nav-overlay-label relative z-10 flex flex-wrap items-end justify-between gap-6 border-t border-line pt-8">
         <div>
-          <p className="t-label mb-2 text-ember">HEADQUARTERS</p>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium mb-2 text-ember">HEADQUARTERS</p>
           <p className="text-sm text-bone-dim">
             Mahindra Towers, Dr. G.M. Bhosale Marg, Worli, Mumbai 400018
           </p>
         </div>
         <div>
-          <p className="t-label mb-2 text-ember">INQUIRIES</p>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium mb-2 text-ember">INQUIRIES</p>
           <p className="text-sm text-bone-dim">communications@mahindra.com</p>
         </div>
-        <div className="t-label text-bone-dim">SINCE 1945 · 81 YEARS</div>
+        <div className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">SINCE 1945 · 81 YEARS</div>
       </div>
     </div>
   );

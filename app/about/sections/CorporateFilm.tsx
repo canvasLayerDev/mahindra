@@ -16,8 +16,8 @@ export function CorporateFilm() {
     <>
       <Section className="bg-ink-900 border-t border-line">
         <Container>
-          <p className="t-label text-gold mb-4">(02) CORPORATE FILM</p>
-          <h2 className="t-h1 mb-12">OUR PURPOSE IN MOTION</h2>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-gold mb-4">(02) CORPORATE FILM</p>
+          <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95] mb-12">OUR PURPOSE IN MOTION</h2>
 
           {/* Interactive Poster Banner */}
           <div
@@ -35,7 +35,7 @@ export function CorporateFilm() {
             {/* Background Poster */}
             {posterError ? (
               <div className="absolute inset-0 bg-ink-800 flex items-center justify-center p-6 text-gold">
-                <span className="t-label font-bold text-center">MAHINDRA CORPORATE FILM</span>
+                <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">MAHINDRA CORPORATE FILM</span>
               </div>
             ) : (
               <Image
@@ -81,7 +81,7 @@ export function CorporateFilm() {
           <div className="relative h-full max-h-[80vh] w-full max-w-[1280px] overflow-hidden rounded-2xl bg-black border border-line">
             <button
               onClick={() => setIsPlaying(false)}
-              className="t-label absolute top-4 right-4 z-20 rounded-full bg-ink-900/80 px-4 py-2 text-bone hover:text-gold"
+              className="font-mono text-xs uppercase tracking-wider font-medium absolute top-4 right-4 z-20 rounded-full bg-ink-900/80 px-4 py-2 text-bone hover:text-gold"
             >
               [ ESC CLOSE ✕ ]
             </button>

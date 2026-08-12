@@ -62,8 +62,8 @@ export function CulturalMuseum() {
   return (
     <Section ref={sectionRef} className="bg-ink-900 border-t border-line overflow-hidden">
       <Container>
-        <p className="t-label text-gold mb-4">(07) HERITAGE &amp; CULTURE</p>
-        <h2 className="t-h1 mb-16">CULTURAL OUTREACH &amp; MUSEUM OF LIVING HISTORY</h2>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium text-gold mb-4">(07) HERITAGE &amp; CULTURE</p>
+        <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95] mb-16">CULTURAL OUTREACH &amp; MUSEUM OF LIVING HISTORY</h2>
 
         <Grid cols={2} className="gap-12 lg:gap-16 items-start">
           {/* Left Column: Cultural Connect */}
@@ -81,8 +81,8 @@ export function CulturalMuseum() {
               )}
             </div>
             <div>
-              <span className="t-label text-gold">CULTURAL OUTREACH</span>
-              <h3 className="t-h2 text-bone mt-2 mb-4">MOVING PEOPLE TO RISE TOGETHER</h3>
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-gold">CULTURAL OUTREACH</span>
+              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mt-2 mb-4">MOVING PEOPLE TO RISE TOGETHER</h3>
               <AnimatedLink href="/about" underlineColor="bg-gold">
                 Explore Events →
               </AnimatedLink>
@@ -104,8 +104,8 @@ export function CulturalMuseum() {
               )}
             </div>
             <div>
-              <span className="t-label text-ember">MUSEUM OF LIVING HISTORY</span>
-              <h3 className="t-h2 text-bone mt-2 mb-4">
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">MUSEUM OF LIVING HISTORY</span>
+              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mt-2 mb-4">
                 CONNECTING HISTORIC RICHNESS TO OUR UNDISCOVERED FUTURE
               </h3>
               <AnimatedLink href="/about" underlineColor="bg-ember">

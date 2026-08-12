@@ -4,171 +4,138 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Section, Container, Grid } from "@/components/layout";
-import { Counter } from "@/components/motion/Counter";
-import { ImageReveal } from "@/components/motion/ImageReveal";
+import { Section, Container } from "@/components/layout";
 import { getReducedMotion } from "@/lib/motion";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const cards = [
+  {
+    title: "PROJECT NANHI KALI",
+    image: "/m10.png",
+  },
+  {
+    title: "WOMEN EMPOWERMENT",
+    image: "/m11.png",
+  },
+  {
+    title: "SUSTAINABILITY COMMITMENT",
+    image: "/m12.png",
+  },
+  {
+    title: "GOVERNANCE & TRUST",
+    image: "https://www.mahindra.com/sites/default/files/2026-07/Mhaindra%20rise%20banner%20update%202%20Golden%20Peacock%20Award%20Desktop%20Jul26.jpg.webp",
+  },
+];
+
 export function PurposeLed() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const img1Ref = useRef<HTMLDivElement>(null);
-  const img2Ref = useRef<HTMLDivElement>(null);
-  const img3Ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
+  const bgRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const thumbRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
-      if (!section || getReducedMotion()) return;
+      if (getReducedMotion() || !containerRef.current) return;
 
-      // Asymmetric parallax speeds for the 3 image panels
-      if (img1Ref.current) {
-        gsap.to(img1Ref.current, {
-          y: -60,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-      }
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=300%",
+          scrub: 0.5,
+          pin: true,
+        },
+      });
 
-      if (img2Ref.current) {
-        gsap.to(img2Ref.current, {
-          y: -110,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-      }
+      // Initially setup backgrounds and thumbnails
+      // Bg 0 is visible (scale 1, opacity 1). Bg 1, 2, 3 are scale 1.1, opacity 0
+      gsap.set(bgRefs.current[0], { scale: 1, opacity: 1 });
+      gsap.set(bgRefs.current.slice(1), { scale: 1.1, opacity: 0 });
+      
+      // Thumb 0 is hidden (width 0), Thumbs 1,2,3 are visible
+      gsap.set(thumbRefs.current[0], { width: 0, opacity: 0, marginLeft: 0 });
 
-      if (img3Ref.current) {
-        gsap.to(img3Ref.current, {
-          y: -30,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-      }
+      // Step 1: Bg 1 fades in & zooms down to 1. Thumb 0 expands, Thumb 1 shrinks
+      tl.to(bgRefs.current[1], { opacity: 1, scale: 1, duration: 1, ease: "none" }, 0)
+        .to(thumbRefs.current[0], { width: 220, opacity: 1, marginLeft: 16, duration: 1, ease: "none" }, 0)
+        .to(thumbRefs.current[1], { width: 0, opacity: 0, marginLeft: 0, duration: 1, ease: "none" }, 0);
+
+      // Step 2: Bg 2 fades in & zooms down to 1. Thumb 1 expands, Thumb 2 shrinks
+      tl.to(bgRefs.current[2], { opacity: 1, scale: 1, duration: 1, ease: "none" }, 1)
+        .to(thumbRefs.current[1], { width: 220, opacity: 1, marginLeft: 16, duration: 1, ease: "none" }, 1)
+        .to(thumbRefs.current[2], { width: 0, opacity: 0, marginLeft: 0, duration: 1, ease: "none" }, 1);
+
+      // Step 3: Bg 3 fades in & zooms down to 1. Thumb 2 expands, Thumb 3 shrinks
+      tl.to(bgRefs.current[3], { opacity: 1, scale: 1, duration: 1, ease: "none" }, 2)
+        .to(thumbRefs.current[2], { width: 220, opacity: 1, marginLeft: 16, duration: 1, ease: "none" }, 2)
+        .to(thumbRefs.current[3], { width: 0, opacity: 0, marginLeft: 0, duration: 1, ease: "none" }, 2);
+
     },
-    { scope: sectionRef }
+    { scope: containerRef }
   );
 
   return (
-    <Section ref={sectionRef} className="bg-ink-900 overflow-hidden">
-      <Container>
-        {/* Section Header */}
-        <p className="t-label text-ember mb-4">(03) WHO WE ARE: PURPOSE LED</p>
-        <h2 className="t-h1 max-w-[20ch] mb-20">
-          DRIVING POSITIVE CHANGE FOR PEOPLE AND PLANET
-        </h2>
-
-        {/* Editorial Two-Column Stat Layout */}
-        <Grid cols={2} className="gap-16 lg:gap-24 mb-24">
-          <div className="space-y-16">
-            {/* Stat Block 1 */}
-            <div className="border-b border-line pb-8">
-              <p className="t-label text-bone-dim mb-2">PROJECT NANHI KALI</p>
-              <div className="t-hero text-ember flex items-baseline gap-2">
-                <Counter to={940} suffix="K+" />
-              </div>
-              <p className="t-lead mt-3 text-bone">
-                Girls educated till date across India through Nanhi Kali.
-              </p>
-            </div>
-
-            {/* Stat Block 2 */}
-            <div className="border-b border-line pb-8">
-              <p className="t-label text-bone-dim mb-2">WOMEN EMPOWERMENT</p>
-              <div className="t-hero text-bone flex items-baseline gap-2">
-                <Counter to={1.4} suffix="M+" decimals={1} />
-              </div>
-              <p className="t-lead mt-3 text-bone-dim">
-                Women supported with livelihood &amp; skill building programs.
-              </p>
-            </div>
-          </div>
-
-          <div className="space-y-16 lg:pt-16">
-            {/* Stat Block 3 */}
-            <div className="border-b border-line pb-8">
-              <p className="t-label text-bone-dim mb-2">SUSTAINABILITY COMMITMENT</p>
-              <div className="t-hero text-bone flex items-baseline gap-2">
-                <Counter to={2008} />
-              </div>
-              <p className="t-lead mt-3 text-bone-dim">
-                Embracing zero-waste and green manufacturing operations.
-              </p>
-            </div>
-
-            {/* Stat Block 4 */}
-            <div className="border-b border-line pb-8">
-              <p className="t-label text-bone-dim mb-2">GOVERNANCE &amp; TRUST</p>
-              <div className="t-h1 text-gold flex items-baseline gap-2 pt-4">
-                GOLD STANDARDS
-              </div>
-              <p className="t-lead mt-3 text-bone-dim">
-                Ensuring highest ethics, accountability and community governance.
-              </p>
-            </div>
-          </div>
-        </Grid>
-
-        {/* Asymmetric Parallax Image Gallery */}
-        <div className="relative grid grid-cols-1 md:grid-cols-12 gap-8 items-start pt-12">
-          {/* Image 1: Kaabil (Left Column) */}
-          <div ref={img1Ref} className="md:col-span-7 will-change-transform">
-            <ImageReveal
-              src="https://www.mahindra.com/sites/default/files/2025-07/Mahindra_%20Home%20Page_purpose_Kaabil%20_without%20text_v4.webp"
-              alt="Mahindra Purpose Kaabil"
-              aspectRatio="aspect-[16/10]"
-              wrapperClassName="rounded-2xl shadow-2xl"
-            />
-            <p className="t-label mt-4 text-bone-dim">KAABIL — SKILLING INDIA&apos;S YOUTH</p>
-          </div>
-
-          {/* Image 2: Nanhi Kali (Right Offset Column) */}
+    <Section ref={containerRef} className="relative h-[400vh] bg-ink-900">
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        
+        {/* Background Layer */}
+        {cards.map((card, i) => (
           <div
-            ref={img2Ref}
-            className="md:col-span-5 md:mt-24 will-change-transform"
+            key={`bg-${i}`}
+            ref={(el) => { bgRefs.current[i] = el; }}
+            className="absolute inset-0 z-0 origin-center"
+            style={{ zIndex: i }}
           >
-            <ImageReveal
-              src="https://www.mahindra.com/sites/default/files/2026-03/Nanhikali_banner_0.webp"
-              alt="Project Nanhi Kali"
-              aspectRatio="aspect-[4/5]"
-              wrapperClassName="rounded-2xl shadow-2xl"
+            <img
+              src={card.image}
+              alt={card.title}
+              className="h-full w-full object-cover"
             />
-            <p className="t-label mt-4 text-bone-dim">PROJECT NANHI KALI · GIRL CHILD EDUCATION</p>
+          </div>
+        ))}
+
+        <Container className="relative z-10 h-full flex flex-col justify-between pt-20 pb-12">
+          {/* Top Content */}
+          <div>
+            <p className="font-mono text-sm uppercase tracking-wider font-medium text-white mb-4">(03) WHO WE ARE: PURPOSE LED</p>
+            <h2 className="font-display text-4xl uppercase leading-[0.9] text-white max-w-[15ch]">
+              DRIVING POSITIVE CHANGE FOR PEOPLE AND PLANET
+            </h2>
           </div>
 
-          {/* Image 3: Planet Positive (Centered Lower Column) */}
-          <div
-            ref={img3Ref}
-            className="md:col-span-8 md:col-start-3 md:-mt-12 will-change-transform"
-          >
-            <ImageReveal
-              src="https://www.mahindra.com/sites/default/files/2025-07/Mahindra_%20Purpose%20led_planet%20postive_without%20text_v2.webp"
-              alt="Planet Positive Sustainability"
-              aspectRatio="aspect-[21/9]"
-              wrapperClassName="rounded-2xl shadow-2xl"
-            />
-            <p className="t-label mt-4 text-bone-dim">PLANET POSITIVE · CARBON NEUTRAL BY 2040</p>
+          {/* Bottom Horizontal Thumbnails */}
+          <div className="flex items-center justify-end overflow-hidden pb-4">
+            {cards.map((card, i) => (
+              <div
+                key={`thumb-${i}`}
+                ref={(el) => { thumbRefs.current[i] = el; }}
+                className="relative h-[130px] overflow-hidden border border-line/30 bg-ink-800 shrink-0"
+                style={{
+                  width: i === 0 ? 0 : 220,
+                  opacity: i === 0 ? 0 : 1,
+                  marginLeft: i === 0 ? 0 : 16
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-900/90 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-4">
+                  <p className="font-mono text-[10px] text-ember mb-1">0{i + 1}</p>
+                  <h3 className="font-display text-xs uppercase text-bone leading-tight">
+                    {card.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </Section>
   );
 }

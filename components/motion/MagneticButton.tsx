@@ -65,7 +65,7 @@ export const MagneticButton = forwardRef<HTMLButtonElement, MagneticButtonProps>
           if (onMouseLeave) onMouseLeave(e);
         }}
         className={cn(
-          "inline-flex items-center justify-center rounded-full border font-medium uppercase tracking-wider transition-colors duration-300 select-none will-change-transform",
+          "inline-flex items-center justify-center border font-medium uppercase tracking-wider transition-colors duration-300 select-none will-change-transform",
           variants[variant],
           sizes[size],
           className

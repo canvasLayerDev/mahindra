@@ -127,10 +127,10 @@ export function SUVRail() {
       <Container className="mb-12">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="t-label text-ember mb-3 font-bold">(03) HIGH-DEFINITION LINEUP</p>
-            <h2 className="t-h1">EXPLORE MAHINDRA RANGE</h2>
+            <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-3 font-bold">(03) HIGH-DEFINITION LINEUP</p>
+            <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95]">EXPLORE MAHINDRA RANGE</h2>
           </div>
-          <span className="t-label text-gold font-mono text-sm font-bold">
+          <span className="font-mono text-xs uppercase tracking-wider font-medium text-gold font-mono text-sm font-bold">
             SWIPE / SCROLL FOR SPECIFICATIONS →
           </span>
         </div>
@@ -169,11 +169,11 @@ function VehicleCard({
     >
       {/* Top Header & Tag */}
       <div className="flex justify-between items-start z-10">
-        <span className="t-label font-mono text-bone-dim text-xs font-bold">
+        <span className="font-mono text-xs uppercase tracking-wider font-medium font-mono text-bone-dim text-xs font-bold">
           ({String(index).padStart(2, "0")})
         </span>
         <div className="flex flex-col items-end">
-          <span className="t-label text-ember font-bold text-xs">{model.tag}</span>
+          <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember font-bold text-xs">{model.tag}</span>
           <span className="text-xs font-mono font-bold text-gold mt-1">
             {model.price}
           </span>
@@ -190,7 +190,7 @@ function VehicleCard({
 
         {hasError ? (
           <div className="flex h-full w-full items-center justify-center bg-ink-700 text-ember rounded-xl p-4">
-            <span className="t-label font-bold text-center">{model.name}</span>
+            <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">{model.name}</span>
           </div>
         ) : (
           <Image
@@ -207,22 +207,22 @@ function VehicleCard({
 
       {/* Footer Info & Engine Specs */}
       <div className="z-10 border-t border-line pt-4">
-        <h3 className="t-h2 text-bone text-2xl group-hover:text-ember transition-colors mb-4 font-bold">
+        <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone text-2xl group-hover:text-ember transition-colors mb-4 font-bold">
           {model.name}
         </h3>
 
         {/* 3 Spec Badges */}
         <div className="grid grid-cols-3 gap-2 mb-4 bg-ink-900 p-3 rounded-xl border border-line text-center">
           <div>
-            <p className="text-[10px] t-label text-bone-dim font-bold">POWER</p>
+            <p className="text-[10px] font-mono text-xs uppercase tracking-wider font-medium text-bone-dim font-bold">POWER</p>
             <p className="text-xs font-bold font-mono text-bone">{model.power}</p>
           </div>
           <div className="border-x border-line">
-            <p className="text-[10px] t-label text-bone-dim font-bold">TORQUE</p>
+            <p className="text-[10px] font-mono text-xs uppercase tracking-wider font-medium text-bone-dim font-bold">TORQUE</p>
             <p className="text-xs font-bold font-mono text-bone">{model.torque}</p>
           </div>
           <div>
-            <p className="text-[10px] t-label text-bone-dim font-bold">DRIVE</p>
+            <p className="text-[10px] font-mono text-xs uppercase tracking-wider font-medium text-bone-dim font-bold">DRIVE</p>
             <p className="text-xs font-bold font-mono text-ember font-bold">{model.drive}</p>
           </div>
         </div>

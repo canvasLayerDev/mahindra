@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { bebasNeue, satoshi, jetbrainsMono } from "@/lib/fonts";
+import { goldman, bebasNeue, satoshi, jetbrainsMono } from "@/lib/fonts";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { CursorProvider } from "@/lib/hooks/useCursor";
 import { Cursor } from "@/components/shell/Cursor";
@@ -48,9 +48,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${satoshi.variable} ${jetbrainsMono.variable}`}
+      className={`${goldman.variable} ${bebasNeue.variable} ${satoshi.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-dvh bg-ink-900 text-bone antialiased selection:bg-ember selection:text-ink-900">
+      <body suppressHydrationWarning className="min-h-dvh bg-ink-900 text-bone antialiased selection:bg-ember selection:text-ink-900">
         <CursorProvider>
           <SmoothScrollProvider>
             {/* Custom Cursor */}

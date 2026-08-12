@@ -21,7 +21,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
         ref={ref}
         className={cn(
           "relative w-full",
-          !noPadding && "py-24 lg:py-[200px]",
+          !noPadding && "py-16 lg:py-24",
           className,
         )}
         {...props}

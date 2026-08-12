@@ -43,74 +43,104 @@ export function Nav() {
 
   return (
     <>
-      <header
-        ref={navRef}
-        className="fixed top-0 left-0 right-0 z-[9980] flex items-center justify-between px-6 py-4 lg:px-[120px] bg-white/85 backdrop-blur-xl border-b border-black/[0.08] shadow-sm pointer-events-auto transition-transform will-change-transform"
-      >
-        {/* Left Brand Logo */}
-        <Link
-          href="/"
-          className="relative block h-7 w-40 lg:h-8 lg:w-48"
-          onMouseEnter={() => setVariant("ring")}
-          onMouseLeave={() => setVariant("default")}
+      {/* Wrapper for floating navbar */}
+      <div className="fixed top-4 lg:top-6 left-0 right-0 z-[9980] flex justify-center px-4 lg:px-12 pointer-events-none">
+        <header
+          ref={navRef}
+          className="relative w-full max-w-[1400px] flex items-center justify-between px-6 py-3.5 lg:px-10 pointer-events-auto will-change-transform"
         >
-          <Image
-            src="https://www.mahindra.com/sites/default/files/2025-07/mahindra-red-logo.webp"
-            alt="Mahindra Rise"
-            fill
-            priority
-            className="object-contain object-left"
-          />
-        </Link>
-
-        {/* Right Navigation Links & Pill Menu Trigger */}
-        <nav className="flex items-center gap-8 lg:gap-10">
-          <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/"
-              className={`t-label font-bold transition-colors duration-300 ${
-                pathname === "/" ? "text-ember" : "text-bone hover:text-ember"
-              }`}
-              onMouseEnter={() => setVariant("ring")}
-              onMouseLeave={() => setVariant("default")}
-            >
-              HOME
-            </Link>
-            <Link
-              href="/automotive"
-              className={`t-label font-bold transition-colors duration-300 ${
-                pathname === "/automotive" ? "text-ember" : "text-bone hover:text-ember"
-              }`}
-              onMouseEnter={() => setVariant("ring")}
-              onMouseLeave={() => setVariant("default")}
-            >
-              AUTOMOTIVE
-            </Link>
-            <Link
-              href="/about"
-              className={`t-label font-bold transition-colors duration-300 ${
-                pathname === "/about" ? "text-ember" : "text-bone hover:text-ember"
-              }`}
-              onMouseEnter={() => setVariant("ring")}
-              onMouseLeave={() => setVariant("default")}
-            >
-              THE GROUP
-            </Link>
-          </div>
-
-          {/* Menu Trigger Button */}
-          <button
-            ref={magneticMenuRef}
-            onClick={() => setMenuOpen(true)}
-            className="t-label flex items-center gap-2 rounded-full border border-black/15 bg-white px-5 py-2.5 text-bone font-bold shadow-sm transition-all duration-300 hover:border-ember hover:text-ember hover:shadow-md"
+          {/* Slanted Glass Background */}
+          <div className="absolute inset-0 -z-10 bg-white/95 backdrop-blur-xl shadow-xl -skew-x-[12deg] border border-black/15" />
+          
+          {/* Left: Mahindra Brand Logo */}
+          <Link
+            href="/"
+            className="relative block h-7 w-36 lg:h-8 lg:w-44 shrink-0"
             onMouseEnter={() => setVariant("ring")}
             onMouseLeave={() => setVariant("default")}
           >
-            <span className="h-2 w-2 rounded-full bg-ember animate-pulse" />
-            <span>MENU</span>
-          </button>
-        </nav>
-      </header>
+            <Image
+              src="https://www.mahindra.com/sites/default/files/2025-07/mahindra-red-logo.webp"
+              alt="Mahindra Rise"
+              fill
+              sizes="(max-width: 1024px) 150px, 180px"
+              priority
+              className="object-contain object-left"
+            />
+          </Link>
+
+          {/* Center/Right: Desktop Navigation Links */}
+          <nav className="flex items-center gap-6 lg:gap-8">
+            <div className="hidden md:flex items-center gap-6 lg:gap-8">
+              <Link
+                href="/"
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
+                  pathname === "/" ? "text-ember" : "text-black hover:text-ember"
+                }`}
+                onMouseEnter={() => setVariant("ring")}
+                onMouseLeave={() => setVariant("default")}
+              >
+                HOME
+              </Link>
+              <Link
+                href="/automotive"
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
+                  pathname === "/automotive" ? "text-ember" : "text-black hover:text-ember"
+                }`}
+                onMouseEnter={() => setVariant("ring")}
+                onMouseLeave={() => setVariant("default")}
+              >
+                AUTOMOTIVE
+              </Link>
+              <Link
+                href="/#what-we-do"
+                className="font-mono text-xs uppercase tracking-wider font-bold text-black transition-colors duration-300 hover:text-ember"
+                onMouseEnter={() => setVariant("ring")}
+                onMouseLeave={() => setVariant("default")}
+              >
+                INDUSTRIES
+              </Link>
+              <Link
+                href="/about"
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
+                  pathname === "/about" ? "text-ember" : "text-black hover:text-ember"
+                }`}
+                onMouseEnter={() => setVariant("ring")}
+                onMouseLeave={() => setVariant("default")}
+              >
+                THE GROUP
+              </Link>
+            </div>
+
+            {/* Right: Actions */}
+            <div className="flex items-center gap-3 lg:gap-4">
+              {/* Fullscreen Overlay Menu Trigger */}
+              <button
+                onClick={() => setMenuOpen(true)}
+                className="font-mono text-xs uppercase tracking-wider font-bold flex items-center gap-2 border border-black/20 bg-black/5 px-4 py-2 text-black transition-all duration-300 hover:bg-black hover:text-white"
+                onMouseEnter={() => setVariant("ring")}
+                onMouseLeave={() => setVariant("default")}
+                aria-label="Open Navigation Menu"
+              >
+                <span>MENU</span>
+                <span className="text-ember font-bold">☰</span>
+              </button>
+
+              {/* Contact CTA */}
+              <Link
+                href="/contact"
+                ref={magneticMenuRef}
+                className="hidden sm:flex font-mono text-xs uppercase tracking-wider font-bold items-center gap-2 border border-ember bg-ember px-4 py-2 text-white shadow-sm transition-all duration-300 hover:bg-black hover:border-black hover:text-white"
+                onMouseEnter={() => setVariant("ring")}
+                onMouseLeave={() => setVariant("default")}
+              >
+                <span className="h-2 w-2 bg-white animate-pulse" />
+                <span>Let&apos;s Connect</span>
+              </Link>
+            </div>
+          </nav>
+        </header>
+      </div>
 
       {/* Fullscreen Navigation Overlay */}
       <NavOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />

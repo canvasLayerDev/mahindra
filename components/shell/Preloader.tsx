@@ -144,7 +144,7 @@ export function Preloader() {
         ref={textRef}
         className="relative z-10 overflow-hidden flex items-center justify-center px-4"
       >
-        <h1 className="t-hero tracking-widest text-bone flex overflow-hidden">
+        <h1 className="font-display text-[clamp(56px,9vw,200px)] uppercase tracking-[-0.02em] leading-[0.88] tracking-widest text-bone flex overflow-hidden">
           {brandText.split("").map((char, idx) => (
             <span
               key={idx}

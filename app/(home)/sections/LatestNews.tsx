@@ -22,8 +22,8 @@ export function LatestNews() {
     <Section className="bg-ink-900 overflow-hidden">
       {/* Eyebrow & Header */}
       <Container className="mb-12">
-        <p className="t-label text-ember mb-3">(06) LATEST NEWS &amp; CAREERS</p>
-        <h2 className="t-h1">NEWSROOM &amp; OPPORTUNITIES</h2>
+        <p className="font-mono text-sm uppercase tracking-wider font-medium text-white mb-4">(06) LATEST NEWS &amp; CAREERS</p>
+        <h2 className="font-display text-4xl uppercase leading-[0.9] text-white">NEWSROOM &amp; OPPORTUNITIES</h2>
       </Container>
 
       {/* Infinite Marquee News Ticker */}
@@ -31,10 +31,10 @@ export function LatestNews() {
         <Marquee speed={1.4} className="py-6 bg-ink-800 border-y border-line">
           {NEWS_HEADLINES.map((headline, idx) => (
             <div key={idx} className="flex items-center gap-8">
-              <span className="t-h2 text-bone hover:text-ember transition-colors cursor-pointer">
+              <span className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone hover:text-ember transition-colors cursor-pointer">
                 {headline}
               </span>
-              <span className="h-3 w-3 rounded-full bg-ember" />
+              <span className="h-3 w-3 bg-ember" />
             </div>
           ))}
         </Marquee>
@@ -45,7 +45,7 @@ export function LatestNews() {
         <Grid cols={3} className="gap-8">
           {/* Card 1: SOAR */}
           <div
-            className="group relative flex h-[460px] flex-col justify-between overflow-hidden rounded-2xl bg-ink-800 p-8 border border-line transition-all duration-500 hover:border-ember"
+            className="group relative flex h-[460px] flex-col justify-between overflow-hidden bg-ink-800 p-8 border border-line transition-all duration-500 hover:border-ember"
             onMouseEnter={() => {
               setVariant("ring");
             }}
@@ -53,7 +53,7 @@ export function LatestNews() {
           >
             {soarImgError ? (
               <div className="absolute inset-0 bg-ink-800 flex items-center justify-center p-6 text-ember">
-                <span className="t-label font-bold text-center">SOAR PROGRAMME</span>
+                <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">SOAR PROGRAMME</span>
               </div>
             ) : (
               <Image
@@ -68,13 +68,13 @@ export function LatestNews() {
             <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/50 to-transparent z-10" />
 
             <div className="relative z-20 flex justify-between items-start">
-              <span className="t-label text-ember">PROGRAMME</span>
-              <span className="t-label text-bone-dim">(01)</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">PROGRAMME</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">(01)</span>
             </div>
 
             <div className="relative z-20">
-              <h3 className="t-h2 text-bone mb-3">SOAR</h3>
-              <p className="t-body text-bone-dim text-sm mb-6">
+              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-3">SOAR</h3>
+              <p className="font-body text-base leading-relaxed text-bone-dim text-sm mb-6">
                 Leading the way with a first-of-its-kind &apos;Returnship&apos; program for
                 women returning to mainstream professional roles.
               </p>
@@ -95,13 +95,13 @@ export function LatestNews() {
             onMouseLeave={() => setVariant("default")}
           >
             <div className="relative z-20 flex justify-between items-start">
-              <span className="t-label text-ember">CAREERS</span>
-              <span className="t-label text-bone-dim">(02)</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">CAREERS</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">(02)</span>
             </div>
 
             <div className="relative z-20">
-              <h3 className="t-h2 text-bone mb-3">JOIN OUR TEAM</h3>
-              <p className="t-body text-bone-dim text-sm mb-6">
+              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-3">JOIN OUR TEAM</h3>
+              <p className="font-body text-base leading-relaxed text-bone-dim text-sm mb-6">
                 Be a part of 327K+ changemakers elevating lives across 100+ countries.
                 Discover opportunities in tech, auto, finance &amp; strategy.
               </p>
@@ -122,13 +122,13 @@ export function LatestNews() {
             onMouseLeave={() => setVariant("default")}
           >
             <div className="relative z-20 flex justify-between items-start">
-              <span className="t-label text-gold">INNOVATION</span>
-              <span className="t-label text-bone-dim">(03)</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-gold">INNOVATION</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">(03)</span>
             </div>
 
             <div className="relative z-20">
-              <h3 className="t-h2 text-bone mb-3">MAHINDRA AI</h3>
-              <p className="t-body text-bone-dim text-sm mb-6">
+              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-3">MAHINDRA AI</h3>
+              <p className="font-body text-base leading-relaxed text-bone-dim text-sm mb-6">
                 A specialised artificial intelligence division delivering digital
                 transformation &amp; agentic enterprise solutions across businesses.
               </p>
