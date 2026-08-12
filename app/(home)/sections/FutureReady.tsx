@@ -83,10 +83,10 @@ function FutureStackCard({
               STRATEGIC PILLAR
             </span>
           </div>
-          <h3 className="font-display text-[clamp(40px,6vw,60px)] uppercase leading-[0.95] text-bone group-hover:text-ember transition-colors">
+          <h3 className="font-display text-[clamp(40px,6vw,60px)] uppercase leading-[0.95] text-white transition-colors">
             {card.title}
           </h3>
-          <p className="font-body text-[clamp(20px,2vw,32px)] leading-tight mt-4 text-bone-dim">
+          <p className="font-body text-[clamp(20px,2vw,32px)] leading-tight mt-4 text-white">
             {card.subtitle}
           </p>
         </div>

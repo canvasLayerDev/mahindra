@@ -97,27 +97,7 @@ export function Hero() {
       {/* Light overlay — kept subtle so the requested dark text (#1a1a1a) stays readable */}
       <div className="absolute inset-0 z-10 bg-white/0 pointer-events-none" />
 
-      {/* Top badges */}
-      <div className="absolute top-8 left-6 z-20 flex items-center gap-4 lg:left-[120px]">
-        <div
-          className="border-l-2 border-ember pl-3 text-xs font-bold tracking-wide"
-          style={TEXT_STYLE}
-        >
-          SINCE 1945 · 81 YEARS
-        </div>
-      </div>
 
-      <div className="absolute top-8 right-6 z-20 lg:right-[120px]">
-        <Image
-          src="https://www.mahindra.com/sites/default/files/2025-10/80thYearLogo_Gold.webp"
-          alt="80th Year Gold Logo"
-          width={64}
-          height={64}
-          priority
-          style={{ width: "auto", height: "auto" }}
-          className="h-12 w-auto object-contain"
-        />
-      </div>
 
       {/* Hero Headline */}
       <div className="absolute top-[15%] lg:top-[20%] left-6 lg:left-[120px] z-20 flex items-start">

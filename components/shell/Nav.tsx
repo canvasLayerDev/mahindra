@@ -14,32 +14,9 @@ export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const { setVariant } = useCursor();
-  const magneticMenuRef = useMagnetic<HTMLButtonElement>({ radius: 60, maxDistance: 10 });
+  const magneticMenuRef = useMagnetic<HTMLAnchorElement>({ radius: 60, maxDistance: 10 });
 
-  // Hide on scroll-down, reveal on scroll-up
-  useEffect(() => {
-    const nav = navRef.current;
-    if (!nav) return;
 
-    let lastScrollY = window.scrollY;
-    const yTo = gsap.quickTo(nav, "yPercent", {
-      duration: 0.4,
-      ease: "power2.out",
-    });
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > 100 && currentScrollY > lastScrollY && !menuOpen) {
-        yTo(-100);
-      } else {
-        yTo(0);
-      }
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuOpen]);
 
   return (
     <>
@@ -51,32 +28,43 @@ export function Nav() {
         >
           {/* Slanted Glass Background */}
           <div className="absolute inset-0 -z-10 bg-white/95 backdrop-blur-xl shadow-xl -skew-x-[12deg] border border-black/15" />
-          
-          {/* Left: Mahindra Brand Logo */}
-          <Link
-            href="/"
-            className="relative block h-7 w-36 lg:h-8 lg:w-44 shrink-0"
-            onMouseEnter={() => setVariant("ring")}
-            onMouseLeave={() => setVariant("default")}
-          >
+
+          {/* Left: Mahindra Brand & 80th Year Logos */}
+          <div className="flex items-center gap-3 lg:gap-4 shrink-0">
+            <Link
+              href="/"
+              className="relative block h-7 w-32 lg:h-8 lg:w-40 shrink-0"
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              <Image
+                src="https://www.mahindra.com/sites/default/files/2025-07/mahindra-red-logo.webp"
+                alt="Mahindra Rise"
+                fill
+                sizes="(max-width: 1024px) 130px, 160px"
+                priority
+                className="object-contain object-left"
+              />
+            </Link>
+            <div className="h-5 w-px bg-black/15 hidden sm:block" />
             <Image
-              src="https://www.mahindra.com/sites/default/files/2025-07/mahindra-red-logo.webp"
-              alt="Mahindra Rise"
-              fill
-              sizes="(max-width: 1024px) 150px, 180px"
+              src="https://www.mahindra.com/sites/default/files/2025-10/80thYearLogo_Gold.webp"
+              alt="80th Year Gold Logo"
+              width={64}
+              height={64}
               priority
-              className="object-contain object-left"
+              style={{ width: "auto", height: "auto" }}
+              className="h-7 w-auto object-contain hidden sm:block"
             />
-          </Link>
+          </div>
 
           {/* Center/Right: Desktop Navigation Links */}
           <nav className="flex items-center gap-6 lg:gap-8">
             <div className="hidden md:flex items-center gap-6 lg:gap-8">
               <Link
                 href="/"
-                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
-                  pathname === "/" ? "text-ember" : "text-black hover:text-ember"
-                }`}
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${pathname === "/" ? "text-ember" : "text-black hover:text-ember"
+                  }`}
                 onMouseEnter={() => setVariant("ring")}
                 onMouseLeave={() => setVariant("default")}
               >
@@ -84,9 +72,8 @@ export function Nav() {
               </Link>
               <Link
                 href="/automotive"
-                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
-                  pathname === "/automotive" ? "text-ember" : "text-black hover:text-ember"
-                }`}
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${pathname === "/automotive" ? "text-ember" : "text-black hover:text-ember"
+                  }`}
                 onMouseEnter={() => setVariant("ring")}
                 onMouseLeave={() => setVariant("default")}
               >
@@ -102,9 +89,8 @@ export function Nav() {
               </Link>
               <Link
                 href="/about"
-                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
-                  pathname === "/about" ? "text-ember" : "text-black hover:text-ember"
-                }`}
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${pathname === "/about" ? "text-ember" : "text-black hover:text-ember"
+                  }`}
                 onMouseEnter={() => setVariant("ring")}
                 onMouseLeave={() => setVariant("default")}
               >

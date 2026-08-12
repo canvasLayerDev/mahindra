@@ -3,7 +3,6 @@ import { goldman, bebasNeue, satoshi, jetbrainsMono } from "@/lib/fonts";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { CursorProvider } from "@/lib/hooks/useCursor";
 import { Cursor } from "@/components/shell/Cursor";
-import { Preloader } from "@/components/shell/Preloader";
 import { Nav } from "@/components/shell/Nav";
 import { Footer } from "@/components/shell/Footer";
 import { PageTransition } from "@/components/shell/PageTransition";
@@ -55,9 +54,6 @@ export default function RootLayout({
           <SmoothScrollProvider>
             {/* Custom Cursor */}
             <Cursor />
-
-            {/* Initial Preloader */}
-            <Preloader />
 
             {/* Global Fixed Header Nav */}
             <Nav />

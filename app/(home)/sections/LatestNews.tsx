@@ -3,144 +3,126 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Section, Container, Grid } from "@/components/layout";
-import { Marquee } from "@/components/motion/Marquee";
+import { Section, Container } from "@/components/layout";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { useCursor } from "@/lib/hooks/useCursor";
 
-const NEWS_HEADLINES = [
-  "MAHINDRA GROUP ANNOUNCES DEDICATED STRATEGIC FOCUS ON HOLIDAYS AND LIFESPACES SECTOR",
-  "TECH MAHINDRA LAUNCHES TORONTO INNOVATION HUB TO ACCELERATE AI TRANSFORMATION",
-  "MAHINDRA GROUP REPORTS CONSOLIDATED ROE OF 23% ANNUALIZED FOR Q1",
+const NEWS_ITEMS = [
+  {
+    num: "01",
+    tag: "PROGRAMME",
+    title: "SOAR RETURNSHIP",
+    desc: "A first-of-its-kind Returnship initiative empowering women professionals to re-enter mainstream corporate leadership roles with structured mentorship.",
+    linkText: "Explore SOAR →",
+    href: "/about",
+  },
+  {
+    num: "02",
+    tag: "CAREERS",
+    title: "JOIN OUR TEAM",
+    desc: "Be a part of 327K+ global changemakers shaping automotive, clean mobility, financial ecosystems, and deep-tech AI solutions across 100+ countries.",
+    linkText: "View Openings →",
+    href: "/contact",
+  },
+  {
+    num: "03",
+    tag: "INNOVATION",
+    title: "MAHINDRA AI",
+    desc: "Deploying enterprise-grade AI engines and agentic intelligence across electric vehicle telemetry, smart agriculture, and next-gen tech hubs.",
+    linkText: "Discover AI →",
+    href: "/automotive",
+  },
 ];
 
 export function LatestNews() {
-  const { setVariant, setCursorText } = useCursor();
-  const [soarImgError, setSoarImgError] = useState(false);
+  const { setVariant } = useCursor();
+  const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <Section className="bg-ink-900 overflow-hidden">
-      {/* Eyebrow & Header */}
-      <Container className="mb-12">
-        <p className="font-mono text-sm uppercase tracking-wider font-medium text-white mb-4">(06) LATEST NEWS &amp; CAREERS</p>
-        <h2 className="font-display text-4xl uppercase leading-[0.9] text-white">NEWSROOM &amp; OPPORTUNITIES</h2>
-      </Container>
-
-      {/* Infinite Marquee News Ticker */}
-      <div className="mb-20">
-        <Marquee speed={1.4} className="py-6 bg-ink-800 border-y border-line">
-          {NEWS_HEADLINES.map((headline, idx) => (
-            <div key={idx} className="flex items-center gap-8">
-              <span className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone hover:text-ember transition-colors cursor-pointer">
-                {headline}
-              </span>
-              <span className="h-3 w-3 bg-ember" />
-            </div>
-          ))}
-        </Marquee>
-      </div>
-
-      {/* 3 Work With Us Cards */}
+    <Section className="bg-[#F7F6F2] py-14 lg:py-18 overflow-hidden relative border-t border-black/10">
       <Container>
-        <Grid cols={3} className="gap-8">
-          {/* Card 1: SOAR */}
-          <div
-            className="group relative flex h-[460px] flex-col justify-between overflow-hidden bg-ink-800 p-8 border border-line transition-all duration-500 hover:border-ember"
-            onMouseEnter={() => {
-              setVariant("ring");
-            }}
-            onMouseLeave={() => setVariant("default")}
-          >
-            {soarImgError ? (
-              <div className="absolute inset-0 bg-ink-800 flex items-center justify-center p-6 text-ember">
-                <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">SOAR PROGRAMME</span>
-              </div>
-            ) : (
-              <Image
-                src="https://www.mahindra.com/sites/default/files/2025-04/Mahindra_SOAR%20Banner_758x410_Home%20page.webp"
-                alt="SOAR Returnship Programme"
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                onError={() => setSoarImgError(true)}
-                className="object-cover opacity-40 transition-transform duration-700 group-hover:scale-105 group-hover:opacity-60"
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/50 to-transparent z-10" />
+        {/* Section Header */}
+        <div className="mb-12 border-b border-black/10 pb-8">
+          <p className="font-mono text-xs uppercase tracking-widest font-bold text-ember mb-2">
+            (06) LATEST NEWS &amp; CAREERS
+          </p>
+          <h2 className="font-display text-4xl lg:text-5xl uppercase leading-[0.95] text-black font-extrabold">
+            NEWSROOM &amp; OPPORTUNITIES
+          </h2>
+        </div>
 
-            <div className="relative z-20 flex justify-between items-start">
-              <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">PROGRAMME</span>
-              <span className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">(01)</span>
-            </div>
+        {/* 2-Column Grid: Image Left (50%), Content Right (50%) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+          {/* Left Column: Image (Full Width 50% Split) */}
+          <div className="w-full relative min-h-[460px] lg:min-h-[620px] overflow-hidden border border-black/10 bg-white group flex flex-col justify-end">
+            <Image
+              src="/team.png"
+              alt="Mahindra Team & Opportunities"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+            />
+            {/* Scrim Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
 
-            <div className="relative z-20">
-              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-3">SOAR</h3>
-              <p className="font-body text-base leading-relaxed text-bone-dim text-sm mb-6">
-                Leading the way with a first-of-its-kind &apos;Returnship&apos; program for
-                women returning to mainstream professional roles.
+            {/* Floating Glass Badge */}
+            <div className="relative z-20 m-6 p-6 bg-white/95 backdrop-blur-md border border-black/10">
+              <span className="font-mono text-xs text-ember uppercase tracking-widest block font-bold mb-1">
+                GLOBAL IMPACT
+              </span>
+              <p className="font-display text-xl lg:text-2xl text-black font-bold uppercase leading-tight">
+                327,000+ Changemakers Across 100+ Nations
               </p>
-              <Link href="/#news">
-                <MagneticButton variant="ghost" size="sm">
-                  Explore SOAR →
-                </MagneticButton>
-              </Link>
             </div>
           </div>
 
-          {/* Card 2: Join Our Team */}
-          <div
-            className="group relative flex h-[460px] flex-col justify-between overflow-hidden rounded-2xl bg-ink-800 p-8 border border-line transition-all duration-500 hover:border-ember"
-            onMouseEnter={() => {
-              setVariant("ring");
-            }}
-            onMouseLeave={() => setVariant("default")}
-          >
-            <div className="relative z-20 flex justify-between items-start">
-              <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">CAREERS</span>
-              <span className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">(02)</span>
-            </div>
+          {/* Right Column: News Content List (50% Split) */}
+          <div className="w-full flex flex-col justify-between space-y-4">
+            {NEWS_ITEMS.map((item, idx) => {
+              const isActive = activeIdx === idx;
+              return (
+                <div
+                  key={item.num}
+                  onMouseEnter={() => {
+                    setActiveIdx(idx);
+                    setVariant("ring");
+                  }}
+                  onMouseLeave={() => setVariant("default")}
+                  className={`p-6 lg:p-8 border transition-all duration-300 ${isActive
+                    ? "border-ember bg-white"
+                    : "border-black/10 bg-white/80 hover:bg-white hover:border-black/20"
+                    }`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-mono text-xs font-bold text-ember border border-ember/30 bg-ember/10 px-2.5 py-0.5 uppercase tracking-wider">
+                      {item.tag}
+                    </span>
+                    <span className="font-mono text-xs font-bold text-gray-400">
+                      ({item.num})
+                    </span>
+                  </div>
 
-            <div className="relative z-20">
-              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-3">JOIN OUR TEAM</h3>
-              <p className="font-body text-base leading-relaxed text-bone-dim text-sm mb-6">
-                Be a part of 327K+ changemakers elevating lives across 100+ countries.
-                Discover opportunities in tech, auto, finance &amp; strategy.
-              </p>
-              <Link href="/#news">
-                <MagneticButton variant="ember" size="sm">
-                  View Openings →
-                </MagneticButton>
-              </Link>
-            </div>
+                  <h3 className="font-display text-2xl lg:text-3xl uppercase tracking-wider text-black font-extrabold mb-2">
+                    {item.title}
+                  </h3>
+
+                  <p className="font-body text-sm lg:text-base text-gray-700 leading-relaxed mb-4">
+                    {item.desc}
+                  </p>
+
+                  <Link href={item.href} className="inline-block">
+                    <MagneticButton variant={isActive ? "ember" : "ghost"} size="sm">
+                      {item.linkText}
+                    </MagneticButton>
+                  </Link>
+                </div>
+              );
+            })}
           </div>
-
-          {/* Card 3: Mahindra AI */}
-          <div
-            className="group relative flex h-[460px] flex-col justify-between overflow-hidden rounded-2xl bg-ink-800 p-8 border border-line transition-all duration-500 hover:border-ember"
-            onMouseEnter={() => {
-              setVariant("ring");
-            }}
-            onMouseLeave={() => setVariant("default")}
-          >
-            <div className="relative z-20 flex justify-between items-start">
-              <span className="font-mono text-xs uppercase tracking-wider font-medium text-gold">INNOVATION</span>
-              <span className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">(03)</span>
-            </div>
-
-            <div className="relative z-20">
-              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-3">MAHINDRA AI</h3>
-              <p className="font-body text-base leading-relaxed text-bone-dim text-sm mb-6">
-                A specialised artificial intelligence division delivering digital
-                transformation &amp; agentic enterprise solutions across businesses.
-              </p>
-              <Link href="/#news">
-                <MagneticButton variant="gold" size="sm">
-                  Discover AI →
-                </MagneticButton>
-              </Link>
-            </div>
-          </div>
-        </Grid>
+        </div>
       </Container>
     </Section>
   );
 }
+

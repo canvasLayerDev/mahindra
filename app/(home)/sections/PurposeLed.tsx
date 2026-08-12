@@ -26,7 +26,7 @@ const cards = [
   },
   {
     title: "GOVERNANCE & TRUST",
-    image: "https://www.mahindra.com/sites/default/files/2026-07/Mhaindra%20rise%20banner%20update%202%20Golden%20Peacock%20Award%20Desktop%20Jul26.jpg.webp",
+    image: "m13.webp",
   },
 ];
 
@@ -46,40 +46,181 @@ export function PurposeLed() {
           end: "+=300%",
           scrub: 0.5,
           pin: true,
+          anticipatePin: 1,
         },
       });
 
-      // Initially setup backgrounds and thumbnails
-      // Bg 0 is visible (scale 1, opacity 1). Bg 1, 2, 3 are scale 1.1, opacity 0
-      gsap.set(bgRefs.current[0], { scale: 1, opacity: 1 });
-      gsap.set(bgRefs.current.slice(1), { scale: 1.1, opacity: 0 });
-      
-      // Thumb 0 is hidden (width 0), Thumbs 1,2,3 are visible
-      gsap.set(thumbRefs.current[0], { width: 0, opacity: 0, marginLeft: 0 });
+      // Initial state
+      gsap.set(bgRefs.current, {
+        scale: 1.1,
+        opacity: 0,
+      });
 
-      // Step 1: Bg 1 fades in & zooms down to 1. Thumb 0 expands, Thumb 1 shrinks
-      tl.to(bgRefs.current[1], { opacity: 1, scale: 1, duration: 1, ease: "none" }, 0)
-        .to(thumbRefs.current[0], { width: 220, opacity: 1, marginLeft: 16, duration: 1, ease: "none" }, 0)
-        .to(thumbRefs.current[1], { width: 0, opacity: 0, marginLeft: 0, duration: 1, ease: "none" }, 0);
+      gsap.set(bgRefs.current[0], {
+        scale: 1,
+        opacity: 1,
+      });
 
-      // Step 2: Bg 2 fades in & zooms down to 1. Thumb 1 expands, Thumb 2 shrinks
-      tl.to(bgRefs.current[2], { opacity: 1, scale: 1, duration: 1, ease: "none" }, 1)
-        .to(thumbRefs.current[1], { width: 220, opacity: 1, marginLeft: 16, duration: 1, ease: "none" }, 1)
-        .to(thumbRefs.current[2], { width: 0, opacity: 0, marginLeft: 0, duration: 1, ease: "none" }, 1);
+      gsap.set(thumbRefs.current[0], {
+        width: 0,
+        opacity: 0,
+        marginLeft: 0,
+      });
 
-      // Step 3: Bg 3 fades in & zooms down to 1. Thumb 2 expands, Thumb 3 shrinks
-      tl.to(bgRefs.current[3], { opacity: 1, scale: 1, duration: 1, ease: "none" }, 2)
-        .to(thumbRefs.current[2], { width: 220, opacity: 1, marginLeft: 16, duration: 1, ease: "none" }, 2)
-        .to(thumbRefs.current[3], { width: 0, opacity: 0, marginLeft: 0, duration: 1, ease: "none" }, 2);
+      gsap.set(thumbRefs.current.slice(1), {
+        width: 220,
+        opacity: 1,
+        marginLeft: 16,
+      });
 
+      // -------------------------
+      // STEP 1
+      // -------------------------
+      tl.to(
+        bgRefs.current[1],
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "none",
+        },
+        0
+      )
+        .to(
+          bgRefs.current[0],
+          {
+            opacity: 0,
+            duration: 1,
+            ease: "none",
+          },
+          0
+        )
+        .to(
+          thumbRefs.current[0],
+          {
+            width: 220,
+            opacity: 1,
+            marginLeft: 16,
+            duration: 1,
+            ease: "none",
+          },
+          0
+        )
+        .to(
+          thumbRefs.current[1],
+          {
+            width: 0,
+            opacity: 0,
+            marginLeft: 0,
+            duration: 1,
+            ease: "none",
+          },
+          0
+        );
+
+      // -------------------------
+      // STEP 2
+      // -------------------------
+      tl.to(
+        bgRefs.current[2],
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "none",
+        },
+        1
+      )
+        .to(
+          bgRefs.current[1],
+          {
+            opacity: 0,
+            duration: 1,
+            ease: "none",
+          },
+          1
+        )
+        .to(
+          thumbRefs.current[1],
+          {
+            width: 220,
+            opacity: 1,
+            marginLeft: 16,
+            duration: 1,
+            ease: "none",
+          },
+          1
+        )
+        .to(
+          thumbRefs.current[2],
+          {
+            width: 0,
+            opacity: 0,
+            marginLeft: 0,
+            duration: 1,
+            ease: "none",
+          },
+          1
+        );
+
+      // -------------------------
+      // STEP 3
+      // -------------------------
+      tl.to(
+        bgRefs.current[3],
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "none",
+        },
+        2
+      )
+        .to(
+          bgRefs.current[2],
+          {
+            opacity: 0,
+            duration: 1,
+            ease: "none",
+          },
+          2
+        )
+        .to(
+          thumbRefs.current[2],
+          {
+            width: 220,
+            opacity: 1,
+            marginLeft: 16,
+            duration: 1,
+            ease: "none",
+          },
+          2
+        )
+        .to(
+          thumbRefs.current[3],
+          {
+            width: 0,
+            opacity: 0,
+            marginLeft: 0,
+            duration: 1,
+            ease: "none",
+          },
+          2
+        );
+
+      return () => {
+        tl.kill();
+      };
     },
-    { scope: containerRef }
+    {
+      scope: containerRef,
+    }
   );
 
   return (
     <Section ref={containerRef} className="relative h-[400vh] bg-ink-900">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        
+
         {/* Background Layer */}
         {cards.map((card, i) => (
           <div
