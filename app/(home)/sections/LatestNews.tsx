@@ -7,31 +7,11 @@ import { Section, Container } from "@/components/layout";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { useCursor } from "@/lib/hooks/useCursor";
 
-const NEWS_ITEMS = [
-  {
-    num: "01",
-    tag: "PROGRAMME",
-    title: "SOAR RETURNSHIP",
-    desc: "A first-of-its-kind Returnship initiative empowering women professionals to re-enter mainstream corporate leadership roles with structured mentorship.",
-    linkText: "Explore SOAR →",
-    href: "/about",
-  },
-  {
-    num: "02",
-    tag: "CAREERS",
-    title: "JOIN OUR TEAM",
-    desc: "Be a part of 327K+ global changemakers shaping automotive, clean mobility, financial ecosystems, and deep-tech AI solutions across 100+ countries.",
-    linkText: "View Openings →",
-    href: "/contact",
-  },
-  {
-    num: "03",
-    tag: "INNOVATION",
-    title: "MAHINDRA AI",
-    desc: "Deploying enterprise-grade AI engines and agentic intelligence across electric vehicle telemetry, smart agriculture, and next-gen tech hubs.",
-    linkText: "Discover AI →",
-    href: "/automotive",
-  },
+const NEWS_HEADLINES = [
+  "MAHINDRA GROUP APPOINTS SHVETA ARYA AS GROUP CHIEF STRATEGY OFFICER",
+  "MAHINDRA GROUP ANNOUNCES DEDICATED STRATEGIC FOCUS ON HOLIDAYS AND LIFESPACES SECTOR",
+  "MAHINDRA TRACTORS LAUNCHES 'DUNIYA VICH IKKO LALKAAR' CAMPAIGN WITH SUKHBIR SINGH & PARMISH VERMA",
+  "MAHINDRA GROUP REPORTS CONSOLIDATED REVENUE OF ₹1,42,500 CR & HIGHEST EVER ANNUAL PERFORMANCE",
 ];
 
 export function LatestNews() {
@@ -74,6 +54,11 @@ export function LatestNews() {
               <p className="font-display text-xl lg:text-2xl text-black font-bold uppercase leading-tight">
                 327,000+ Changemakers Across 100+ Nations
               </p>
+              <Link href="/careers">
+                <MagneticButton variant="ghost" size="sm">
+                  Explore SOAR →
+                </MagneticButton>
+              </Link>
             </div>
           </div>
 
@@ -103,22 +88,35 @@ export function LatestNews() {
                     </span>
                   </div>
 
-                  <h3 className="font-display text-2xl lg:text-3xl uppercase tracking-wider text-black font-extrabold mb-2">
-                    {item.title}
-                  </h3>
+            <div className="relative z-20">
+              <h3 className="t-h2 text-bone mb-3">JOIN OUR TEAM</h3>
+              <p className="t-body text-bone-dim text-sm mb-6">
+                Be part of a 327,000+ strong global workforce shaping mobility, clean energy, and artificial intelligence.
+              </p>
+              <Link href="/careers">
+                <MagneticButton variant="ember" size="sm">
+                  View Openings →
+                </MagneticButton>
+              </Link>
+            </div>
+          </div>
 
                   <p className="font-body text-sm lg:text-base text-gray-700 leading-relaxed mb-4">
                     {item.desc}
                   </p>
 
-                  <Link href={item.href} className="inline-block">
-                    <MagneticButton variant={isActive ? "ember" : "ghost"} size="sm">
-                      {item.linkText}
-                    </MagneticButton>
-                  </Link>
-                </div>
-              );
-            })}
+            <div className="relative z-20">
+              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-3">MAHINDRA AI</h3>
+              <p className="font-body text-base leading-relaxed text-bone-dim text-sm mb-6">
+                A specialised artificial intelligence division delivering digital
+                transformation &amp; agentic enterprise solutions across businesses.
+              </p>
+              <Link href="/businesses">
+                <MagneticButton variant="gold" size="sm">
+                  Discover AI →
+                </MagneticButton>
+              </Link>
+            </div>
           </div>
         </div>
       </Container>

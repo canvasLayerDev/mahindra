@@ -20,33 +20,109 @@ export function Nav() {
 
   return (
     <>
-      {/* Wrapper for floating navbar */}
-      <div className="fixed top-4 lg:top-6 left-0 right-0 z-[9980] flex justify-center px-4 lg:px-12 pointer-events-none">
-        <header
-          ref={navRef}
-          className="relative w-full max-w-[1400px] flex items-center justify-between px-6 py-3.5 lg:px-10 pointer-events-auto will-change-transform"
+      <header
+        ref={navRef}
+        className="fixed top-0 left-0 right-0 z-[9980] flex items-center justify-between px-6 py-6 lg:px-[120px] lg:py-8 mix-blend-difference pointer-events-none transition-transform will-change-transform"
+      >
+        {/* Left Logo */}
+        <Link
+          href="/"
+          className="pointer-events-auto relative block h-7 w-40 lg:h-8 lg:w-48"
+          onMouseEnter={() => setVariant("ring")}
+          onMouseLeave={() => setVariant("default")}
         >
-          {/* Slanted Glass Background */}
-          <div className="absolute inset-0 -z-10 bg-white/95 backdrop-blur-xl shadow-xl -skew-x-[12deg] border border-black/15" />
+          <Image
+            src="https://www.mahindra.com/sites/default/files/2025-07/mahindra-red-logo.webp"
+            alt="Mahindra Rise"
+            fill
+            priority
+            className="object-contain object-left"
+          />
+        </Link>
 
-          {/* Left: Mahindra Brand & 80th Year Logos */}
-          <div className="flex items-center gap-3 lg:gap-4 shrink-0">
+        {/* Right Links & Menu Trigger */}
+        <nav className="pointer-events-auto flex items-center gap-8 lg:gap-12">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             <Link
               href="/"
-              className="relative block h-7 w-32 lg:h-8 lg:w-40 shrink-0"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
               onMouseEnter={() => setVariant("ring")}
               onMouseLeave={() => setVariant("default")}
             >
-              <Image
-                src="https://www.mahindra.com/sites/default/files/2025-07/mahindra-red-logo.webp"
-                alt="Mahindra Rise"
-                fill
-                sizes="(max-width: 1024px) 130px, 160px"
-                priority
-                className="object-contain object-left"
-              />
+              HOME
             </Link>
-            <div className="h-5 w-px bg-black/15 hidden sm:block" />
+            <Link
+              href="/automotive"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/automotive" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              AUTOMOTIVE
+            </Link>
+            <Link
+              href="/businesses"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/businesses" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              BUSINESSES
+            </Link>
+            <Link
+              href="/leadership"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/leadership" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              LEADERSHIP
+            </Link>
+            <Link
+              href="/investors"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/investors" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              INVESTORS
+            </Link>
+            <Link
+              href="/careers"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/careers" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              CAREERS
+            </Link>
+            <Link
+              href="/contact"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/contact" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              CONTACT
+            </Link>
+          </div>
+
+          {/* Menu Trigger Button */}
+          <button
+            ref={magneticMenuRef}
+            onClick={() => setMenuOpen(true)}
+            className="t-label flex items-center gap-2 rounded-full border border-bone/40 bg-ink-900/60 px-5 py-2.5 backdrop-blur-md text-bone font-bold transition-all duration-300 hover:border-ember hover:text-ember"
+            onMouseEnter={() => setVariant("ring")}
+            onMouseLeave={() => setVariant("default")}
+          >
             <Image
               src="https://www.mahindra.com/sites/default/files/2025-10/80thYearLogo_Gold.webp"
               alt="80th Year Gold Logo"

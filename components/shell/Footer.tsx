@@ -13,26 +13,25 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const MENU_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Automotive", href: "/automotive" },
-  { label: "Industries", href: "/#what-we-do" },
-  { label: "The Group", href: "/about" },
-  { label: "Contact", href: "/contact" },
+const VERTICALS = [
+  { name: "Automotive", href: "/automotive" },
+  { name: "Farm Equipment", href: "/businesses" },
+  { name: "Financial Services", href: "/businesses" },
+  { name: "Technology Services", href: "/businesses" },
+  { name: "Hospitality & Resorts", href: "/businesses" },
+  { name: "Logistics", href: "/businesses" },
+  { name: "Real Estate", href: "/businesses" },
+  { name: "Renewable Energy", href: "/businesses" },
+  { name: "Emerging Businesses", href: "/businesses" },
 ];
 
-const SOCIAL_LINKS = [
-  { label: "X (Twitter)", href: "https://twitter.com/MahindraRise" },
-  { label: "Instagram", href: "https://www.instagram.com/mahindra" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/mahindra-&amp;-mahindra/" },
-  { label: "YouTube", href: "https://www.youtube.com/user/MahindraRise" },
-];
-
-const RESOURCE_LINKS = [
-  { label: "Newsroom & Stories", href: "/#news" },
-  { label: "Sustainability Report", href: "/#purpose-led" },
-  { label: "Investor Relations", href: "/about" },
-  { label: "Career & Culture", href: "/about" },
+const CTAS = [
+  { label: "Explore SUV Range", href: "/automotive" },
+  { label: "Business Verticals", href: "/businesses" },
+  { label: "Executive Leadership", href: "/leadership" },
+  { label: "Financial Reports & Stocks", href: "/investors" },
+  { label: "Career Opportunities", href: "/careers" },
+  { label: "Contact Global Desk", href: "/contact" },
 ];
 
 export function Footer() {
@@ -46,11 +45,10 @@ export function Footer() {
       if (!titleEl) return;
 
       gsap.fromTo(
-        titleEl,
-        { opacity: 0.3, y: 40 },
+        riseEl,
+        { color: "#1C1C1F" },
         {
-          opacity: 1,
-          y: 0,
+          color: "#F2F0EB",
           scrollTrigger: {
             trigger: titleEl,
             start: "top 95%",
@@ -103,15 +101,13 @@ export function Footer() {
               MENU
             </h4>
             <ul className="space-y-3">
-              {MENU_LINKS.map((item) => (
-                <li key={item.label}>
+              {VERTICALS.map((item) => (
+                <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="font-body text-sm text-gray-400 hover:text-white transition-colors duration-200"
-                    onMouseEnter={() => setVariant("ring")}
-                    onMouseLeave={() => setVariant("default")}
+                    className="text-sm font-medium text-bone-dim transition-colors hover:text-ember"
                   >
-                    {item.label}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -180,17 +176,22 @@ export function Footer() {
         {/* Bottom Giant Brand Title */}
         <div className="mt-12 pt-6 overflow-hidden text-center select-none border-t border-white/10">
           <h2
-            ref={titleRef}
-            className="font-display text-[clamp(64px,16vw,260px)] uppercase leading-none tracking-tight font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-white/20"
+            ref={riseTextRef}
+            className="font-display text-[clamp(80px,18vw,320px)] uppercase leading-none tracking-tight font-extrabold text-ink-700 transition-colors duration-200"
           >
             RISE
           </h2>
         </div>
 
-        {/* Copyright Footer Sub-bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 text-center md:text-left text-gray-500 font-mono text-[11px] uppercase tracking-wider border-t border-white/10 mt-6">
-          <p>© 2026 MAHINDRA &amp; MAHINDRA LTD. ALL RIGHTS RESERVED.</p>
-          <p>PURPOSE LED · PERFORMANCE DRIVEN · FUTURE READY</p>
+        {/* Bottom copyright row */}
+        <div className="hairline mt-12 mb-8" />
+        <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+          <p className="t-label text-bone-dim">
+            © 2026 MAHINDRA &amp; MAHINDRA LTD. ALL RIGHTS RESERVED.
+          </p>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">
+            UNOFFICIAL CONCEPT REDESIGN · CREATED FOR AWWWARDS PRESENTATION
+          </p>
         </div>
       </Container>
     </footer>
