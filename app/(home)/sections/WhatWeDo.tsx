@@ -126,117 +126,100 @@ export function WhatWeDo() {
     { dependencies: [activeIndex] }
   );
 
-  const goTo = (index: number) => {
-    setActiveIndex(((index % INDUSTRIES.length) + INDUSTRIES.length) % INDUSTRIES.length);
-  };
+  return (
+    <div id="what-we-do" ref={sectionRef} className="relative bg-ink-900 py-24">
+      {/* Header Container */}
+      <Container className="mb-12">
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="t-label text-ember font-bold mb-3">(02) WHAT WE DO</p>
+            <h2 className="t-h1 text-bone">NINE INDUSTRIES. ONE PURPOSE.</h2>
+          </div>
+          <div className="t-label font-mono text-lg text-bone font-bold">
+            <span className="text-ember">0{activeIndex + 1}</span> / 09
+          </div>
+        </div>
+      </Container>
+
+      {/* Horizontal Rail of 9 Cards */}
+      <HorizontalRail>
+        {VERTICAL_CARDS.map((card) => (
+          <VerticalCard key={card.num} card={card} />
+        ))}
+      </HorizontalRail>
+
+      {/* Bottom Pinned Ember Progress Bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-line">
+        <div
+          ref={progressBarRef}
+          className="h-full w-full bg-ember origin-left scale-x-0"
+        />
+      </div>
+    </div>
+  );
+}
+
+function VerticalCard({
+  card,
+}: {
+  card: (typeof VERTICAL_CARDS)[number];
+}) {
+  const { setVariant, setCursorText } = useCursor();
+  const [hasError, setHasError] = useState(false);
 
   return (
-    <section
-      ref={stageRef}
-      className="relative flex h-dvh min-h-[640px] w-full flex-col overflow-hidden bg-ink-900 lg:min-h-[720px] mt-8"
+    <Link
+      href={card.href}
+      className="group relative flex h-[70vh] min-h-[480px] max-h-[640px] w-[82vw] md:w-[45vw] lg:w-[34vw] shrink-0 flex-col justify-between overflow-hidden rounded-3xl bg-ink-800 p-8 border border-line transition-all duration-500 hover:border-ember hover:shadow-2xl hover:shadow-ember/20"
+      onMouseEnter={() => {
+        setVariant("view");
+        setCursorText("EXPLORE");
+      }}
+      onMouseLeave={() => {
+        setVariant("default");
+        setCursorText("");
+      }}
     >
-      {/* Background image */}
-      <div className="absolute inset-0" key={active.num}>
+      {/* Background WebP Image */}
+      {hasError ? (
+        <div className="absolute inset-0 bg-ink-800 flex items-center justify-center p-6 text-ember">
+          <span className="t-label font-bold text-center">MAHINDRA · {card.name}</span>
+        </div>
+      ) : (
         <Image
           src={active.image}
           alt={active.name}
           fill
-          priority
-          data-fade-in
-          className="object-cover"
+          sizes="(max-width: 768px) 82vw, (max-width: 1200px) 45vw, 34vw"
+          onError={() => setHasError(true)}
+          className="object-cover grayscale-[0.35] transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
         />
+      )}
 
+      {/* Dark Gradient Overlay */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-ink-900 via-ink-900/40 to-ink-900/60" />
+
+      {/* Top Number Badge */}
+      <div className="relative z-20 flex justify-between items-start">
+        <span className="t-label font-mono text-sm font-bold text-bone-dim group-hover:text-ember transition-colors">
+          ({card.num})
+        </span>
+        <span className="t-label rounded-full border border-bone/30 bg-ink-900/70 px-3 py-1 text-[10px] text-bone font-bold backdrop-blur-md">
+          VERTICAL
+        </span>
       </div>
 
-
-      {/* Main content */}
-      <div className="relative z-20 flex flex-1 flex-col justify-end px-6 pb-8 lg:px-[120px] lg:pb-12">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          {/* Left: text block */}
-          <div className="max-w-xl   bg-opacity-90 bg-ink-900/20 p-5 backdrop-blur-sm" data-fade-in>
-            <p className="font-mono text-sm uppercase tracking-wider font-medium mb-3 font-bold tracking-widest text-white">
-              ({active.num}) {active.eyebrow.toUpperCase()}
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl uppercase leading-[0.95] text-whiteleading-[0.95] text-amber-50">
-              {active.name.toUpperCase()}
-            </h2>
-            <p className="font-body text-base leading-relaxed mt-4 max-w-md text-amber-50">{active.desc}</p>
-
-            <Link
-              href={active.href}
-              onMouseEnter={() => {
-                setVariant("view");
-                setCursorText("EXPLORE");
-              }}
-              onMouseLeave={() => {
-                setVariant("default");
-                setCursorText("");
-              }}
-              className="group mt-8 inline-flex items-center gap-3"
-            >
-              <span className="flex h-12 w-12 items-center justify-center border border-ember text-white transition-colors  bg-ember group-hover:text-ink-900">
-                →
-              </span>
-              <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-white">
-                EXPLORE {active.name.toUpperCase()}
-              </span>
-            </Link>
-          </div>
-
-          {/* Right: preview card rail */}
-          <div className="flex gap-4 overflow-x-auto lg:overflow-visible" data-fade-in>
-            {previewCards.map((card) => (
-              <button
-                key={card.num}
-                onClick={() => goTo(INDUSTRIES.indexOf(card))}
-                onMouseEnter={() => setVariant("ring")}
-                onMouseLeave={() => setVariant("default")}
-                className="group relative h-44 w-32 shrink-0 overflow-hidden border border-white/15 transition-all duration-300 hover:border-ember lg:h-52 lg:w-36"
-              >
-                <Image
-                  src={card.image}
-                  alt={card.name}
-                  fill
-                  sizes="150px"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-3 text-left">
-                  <p className="font-mono text-xs uppercase tracking-wider font-medium text-[10px] font-bold text-ember">
-                    ({card.num})
-                  </p>
-                  <p className="font-mono text-xs uppercase tracking-wider font-medium text-xs font-bold leading-tight text-white">
-                    {card.name.toUpperCase()}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom controls */}
-        <div className="mt-10 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button
-              aria-label="Previous industry"
-              onClick={() => goTo(activeIndex - 1)}
-              className="flex h-10 w-10 items-center justify-center border border-white/30 text-white transition-colors hover:border-ember hover:text-ember"
-            >
-              ←
-            </button>
-            <button
-              aria-label="Next industry"
-              onClick={() => goTo(activeIndex + 1)}
-              className="flex h-10 w-10 items-center justify-center border border-white/30 text-white transition-colors hover:border-ember hover:text-ember"
-            >
-              →
-            </button>
-          </div>
-
-          <div className="font-mono text-xs uppercase tracking-wider font-medium font-mono text-lg font-bold text-white">
-            <span className="text-ember">0{activeIndex + 1}</span>
-            <span className="text-white/40"> / 09</span>
-          </div>
+      {/* Bottom Info Content */}
+      <div className="relative z-20">
+        <h3 className="t-h2 text-bone group-hover:text-ember transition-colors">
+          {card.name}
+        </h3>
+        <p className="t-body text-bone-dim mt-3 text-sm line-clamp-2">
+          {card.desc}
+        </p>
+        <div className="mt-6 flex items-center gap-2 t-label text-ember font-bold transition-transform duration-300 group-hover:translate-x-2">
+          <span>EXPLORE INDUSTRY</span>
+          <span>→</span>
         </div>
       </div>
     </section>

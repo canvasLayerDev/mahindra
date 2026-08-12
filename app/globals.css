@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 /* ============================================================
-   MAHINDRA RISE — Executive Luxury White & Ember Design System
+   MAHINDRA RISE — Matte Charcoal (#1A1A1A) Design System
    ============================================================ */
 
 /* ----------------------------------------------------------
-   Tailwind v4 @theme block — Premium Alabaster Palette
+   Tailwind v4 @theme block — Matte Charcoal #1A1A1A Palette
    ---------------------------------------------------------- */
 @theme inline {
-  /* Palette: Luxury Alabaster, Pure White & Ember */
-  --color-ink-900: #F4F4F6;
-  --color-ink-800: #FFFFFF;
-  --color-ink-700: #EAEBED;
-  --color-line: #E1E3E8;
-  --color-bone: #0F1012;
-  --color-bone-dim: #505562;
+  /* Palette: Matte Charcoal #1A1A1A & Ember */
+  --color-ink-900: #1A1A1A;
+  --color-ink-800: #222224;
+  --color-ink-700: #2A2A2D;
+  --color-line: #38383C;
+  --color-bone: #F5F5F7;
+  --color-bone-dim: #9E9E9E;
   --color-ember: #DC3A2C;
-  --color-ember-dim: #B82E22;
-  --color-gold: #B8860B;
+  --color-ember-dim: #8E1F17;
+  --color-gold: #C6A15B;
 
   /* Semantic aliases */
   --color-background: var(--color-ink-900);
@@ -61,15 +61,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Selection styling — ember background with white text */
+/* Selection styling — ember background with dark charcoal text */
 ::selection {
   background-color: var(--color-ember);
-  color: #FFFFFF;
+  color: #1A1A1A;
 }
 
 ::-moz-selection {
   background-color: var(--color-ember);
-  color: #FFFFFF;
+  color: #1A1A1A;
 }
 
 /* Custom scrollbar */
@@ -82,7 +82,8 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: var(--color-line);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -96,18 +97,18 @@ body {
 }
 
 /* ----------------------------------------------------------
-   Luxury Card Elevation Shadows
+   Luxury Dark Elevation Shadows
    ---------------------------------------------------------- */
 .luxury-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(15, 16, 18, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  background-color: var(--color-ink-800);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .luxury-card:hover {
   border-color: var(--color-ember);
-  box-shadow: 0 20px 45px rgba(220, 58, 44, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 45px rgba(220, 58, 44, 0.25);
   transform: translateY(-6px);
 }
 

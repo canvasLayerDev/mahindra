@@ -9,9 +9,10 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { useCursor } from "@/lib/hooks/useCursor";
 
 const NEWS_HEADLINES = [
+  "MAHINDRA GROUP APPOINTS SHVETA ARYA AS GROUP CHIEF STRATEGY OFFICER",
   "MAHINDRA GROUP ANNOUNCES DEDICATED STRATEGIC FOCUS ON HOLIDAYS AND LIFESPACES SECTOR",
-  "TECH MAHINDRA LAUNCHES TORONTO INNOVATION HUB TO ACCELERATE AI TRANSFORMATION",
-  "MAHINDRA GROUP REPORTS CONSOLIDATED ROE OF 23% ANNUALIZED FOR Q1",
+  "MAHINDRA TRACTORS LAUNCHES 'DUNIYA VICH IKKO LALKAAR' CAMPAIGN WITH SUKHBIR SINGH & PARMISH VERMA",
+  "MAHINDRA GROUP REPORTS CONSOLIDATED REVENUE OF ₹1,42,500 CR & HIGHEST EVER ANNUAL PERFORMANCE",
 ];
 
 export function LatestNews() {
@@ -78,7 +79,7 @@ export function LatestNews() {
                 Leading the way with a first-of-its-kind &apos;Returnship&apos; program for
                 women returning to mainstream professional roles.
               </p>
-              <Link href="/#news">
+              <Link href="/careers">
                 <MagneticButton variant="ghost" size="sm">
                   Explore SOAR →
                 </MagneticButton>
@@ -100,12 +101,11 @@ export function LatestNews() {
             </div>
 
             <div className="relative z-20">
-              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-3">JOIN OUR TEAM</h3>
-              <p className="font-body text-base leading-relaxed text-bone-dim text-sm mb-6">
-                Be a part of 327K+ changemakers elevating lives across 100+ countries.
-                Discover opportunities in tech, auto, finance &amp; strategy.
+              <h3 className="t-h2 text-bone mb-3">JOIN OUR TEAM</h3>
+              <p className="t-body text-bone-dim text-sm mb-6">
+                Be part of a 327,000+ strong global workforce shaping mobility, clean energy, and artificial intelligence.
               </p>
-              <Link href="/#news">
+              <Link href="/careers">
                 <MagneticButton variant="ember" size="sm">
                   View Openings →
                 </MagneticButton>
@@ -132,7 +132,7 @@ export function LatestNews() {
                 A specialised artificial intelligence division delivering digital
                 transformation &amp; agentic enterprise solutions across businesses.
               </p>
-              <Link href="/#news">
+              <Link href="/businesses">
                 <MagneticButton variant="gold" size="sm">
                   Discover AI →
                 </MagneticButton>
