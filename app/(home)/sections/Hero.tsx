@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -6,7 +7,6 @@ import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { RevealText } from "@/components/motion/RevealText";
 import { useMagnetic } from "@/lib/hooks/useMagnetic";
 import { useCursor } from "@/lib/hooks/useCursor";
 import { getReducedMotion } from "@/lib/motion";
@@ -24,47 +24,38 @@ const HERO_CHIPS = [
   { label: "Buy a home", href: "#what-we-do" },
 ];
 
+// Text color + font as requested — change fontFamily below if you want a different
+// (non-Inter) typeface, this just falls back to the system font stack.
+const TEXT_STYLE: React.CSSProperties = {
+  color: "#1a1a1a",
+  fontFamily:
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+};
+
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mediaWrapRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [preloaderDone, setPreloaderDone] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { setVariant } = useCursor();
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
-
-    // Listen for preloader:done custom event
-    const handlePreloaderDone = () => {
-      setPreloaderDone(true);
-    };
-    window.addEventListener("preloader:done", handlePreloaderDone);
-
-    // If preloader was already seen, trigger immediately
-    if (sessionStorage.getItem("mahindra_preloader_seen")) {
-      setPreloaderDone(true);
-    }
-
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-      window.removeEventListener("preloader:done", handlePreloaderDone);
-    };
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Scroll parallax animation
+  // Simple scroll fade — removed the extra scale/parallax layering for a cleaner feel
   useGSAP(
     () => {
       const container = containerRef.current;
-      const mediaWrap = mediaWrapRef.current;
       const content = contentRef.current;
-      if (!container || isMobile || getReducedMotion()) return;
+      if (!container || !content || isMobile || getReducedMotion()) return;
 
-      const tl = gsap.timeline({
+      gsap.to(content, {
+        yPercent: -20,
+        opacity: 0,
+        ease: "none",
         scrollTrigger: {
           trigger: container,
           start: "top top",
@@ -72,13 +63,6 @@ export function Hero() {
           scrub: 0.5,
         },
       });
-
-      if (mediaWrap) {
-        tl.to(mediaWrap, { scale: 1.0, ease: "none" }, 0);
-      }
-      if (content) {
-        tl.to(content, { yPercent: -30, opacity: 0, ease: "none" }, 0);
-      }
     },
     { scope: containerRef, dependencies: [isMobile] }
   );
@@ -86,90 +70,96 @@ export function Hero() {
   return (
     <div
       ref={containerRef}
-      className="relative flex h-dvh w-full items-end overflow-hidden bg-ink-900 pb-12 pt-24 lg:pb-16 lg:pt-32"
+      className="relative flex h-dvh w-full items-end overflow-hidden  pb-12 pt-24 lg:pb-16 lg:pt-32"
     >
-      {/* Background Media — Full HD YouTube Embed (1p56Zn5TpuI) */}
-      {!isMobile ? (
-        <div
-          ref={mediaWrapRef}
-          className="absolute inset-0 h-full w-full overflow-hidden scale-[1.2] will-change-transform"
-        >
-          <iframe
-            src="https://www.youtube.com/embed/1p56Zn5TpuI?autoplay=1&mute=1&loop=1&playlist=1p56Zn5TpuI&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&vq=hd1080"
-            title="Mahindra Full HD Hero Background"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            className="pointer-events-none absolute inset-0 h-[140%] w-[140%] -left-[20%] -top-[20%] object-cover border-0"
+      {/* Background media */}
+      <div ref={mediaWrapRef} className="absolute inset-0 h-full w-full overflow-hidden">
+        {!isMobile ? (
+          <video
+            src="/Mahindra_brand_corporate_film_an…_202608121104.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
           />
-        </div>
-      ) : (
-        <Image
-          src="https://auto.mahindra.com/dw/image/v2/BKRC_PRD/on/demandware.static/-/Sites-amc-Library/default/dwc86ca91f/homepage/bannerWithTextAndCta_Desktop_1.jpg"
-          alt="Mahindra Rise Hero"
-          fill
-          priority
-          className="object-cover"
-        />
-      )}
+        ) : (
+          <Image
+            src="https://auto.mahindra.com/dw/image/v2/BKRC_PRD/on/demandware.static/-/Sites-amc-Library/default/dwc86ca91f/homepage/bannerWithTextAndCta_Desktop_1.jpg"
+            alt="Mahindra Rise Hero"
+            fill
+            priority
+            className="object-cover"
+          />
+        )}
+      </div>
 
-      {/* Dark Overlay Gradient for Perfect Contrast */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(15,16,18,0.4) 0%, rgba(15,16,18,0.2) 40%, rgba(15,16,18,0.85) 100%)",
-        }}
-      />
+      {/* Light overlay — kept subtle so the requested dark text (#1a1a1a) stays readable */}
+      <div className="absolute inset-0 z-10 bg-white/0 pointer-events-none" />
 
-      {/* Top Corner Stamps */}
-      <div className="absolute top-28 left-6 z-20 flex items-center gap-4 lg:left-[120px]">
-        <div className="t-label border-l-2 border-ember pl-3 text-white font-bold">
+      {/* Top badges */}
+      <div className="absolute top-8 left-6 z-20 flex items-center gap-4 lg:left-[120px]">
+        <div
+          className="border-l-2 border-ember pl-3 text-xs font-bold tracking-wide"
+          style={TEXT_STYLE}
+        >
           SINCE 1945 · 81 YEARS
         </div>
       </div>
 
-      <div className="absolute top-24 right-6 z-20 lg:right-[120px]">
+      <div className="absolute top-8 right-6 z-20 lg:right-[120px]">
         <Image
           src="https://www.mahindra.com/sites/default/files/2025-10/80thYearLogo_Gold.webp"
           alt="80th Year Gold Logo"
-          width={72}
-          height={72}
+          width={64}
+          height={64}
           priority
-          className="h-14 w-auto object-contain drop-shadow-md"
+          style={{ width: "auto", height: "auto" }}
+          className="h-12 w-auto object-contain"
         />
       </div>
 
-      {/* Main Hero Foreground Content */}
+      {/* Hero Headline */}
+      <div className="absolute top-[15%] lg:top-[20%] left-6 lg:left-[120px] z-20 flex items-start">
+        {/* Decorative red angled line */}
+
+        <h1 className="font-display text-4xl md:text-5xl text-[#fff] uppercase leading-[1.1] tracking-wider drop-shadow-sm">
+          PURPOSE LED,<br />
+          PERFORMANCE DRIVEN,<br />
+          FUTURE READY.
+        </h1>
+
+      </div>
+
+      {/* Foreground content */}
       <div
         ref={contentRef}
         className="relative z-20 mx-auto w-full max-w-[1440px] px-6 lg:px-[120px]"
       >
-        {preloaderDone && (
-          <RevealText as="h1" split="lines" className="t-hero text-white drop-shadow-lg">
-            PURPOSE LED,
-            <br />
-            PERFORMANCE DRIVEN,
-            <br />
-            <span className="text-ember">FUTURE READY.</span>
-          </RevealText>
-        )}
-
-        {/* Bottom Bar: CTA Chips + Scroll Cue */}
-        <div className="mt-8 flex flex-col gap-6 lg:mt-12 lg:flex-row lg:items-end lg:justify-between">
-          {/* CTA Chips Row */}
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          {/* CTA chips */}
           <div className="flex flex-wrap items-center gap-3">
             {HERO_CHIPS.map((chip) => (
               <HeroChip key={chip.label} label={chip.label} href={chip.href} />
             ))}
           </div>
-
-          {/* Bottom Right Scroll Indicator */}
-          <div className="flex items-center gap-3 self-end text-white/80 font-bold">
-            <span className="t-label text-white">SCROLL</span>
-            <div className="relative h-10 w-px bg-white/40 overflow-hidden">
-              <div className="absolute inset-0 bg-ember animate-bounce" />
-            </div>
-          </div>
         </div>
+      </div>
+
+      {/* Social Media Icons */}
+      <div className="absolute bottom-6 right-6 lg:bottom-18 lg:right-12 z-20 flex items-center gap-4 bg-white/10 backdrop-blur-md px-5 py-6 border border-white/20 shadow-lg">
+        <a href="#" className="text-white hover:text-ember transition-colors drop-shadow-md">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+        </a>
+        <a href="#" className="text-white hover:text-ember transition-colors drop-shadow-md">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" /></svg>
+        </a>
+        <a href="#" className="text-white hover:text-ember transition-colors drop-shadow-md">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+        </a>
+        <a href="#" className="text-white hover:text-ember transition-colors drop-shadow-md">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+        </a>
       </div>
     </div>
   );
@@ -183,7 +173,8 @@ function HeroChip({ label, href }: { label: string; href: string }) {
     <Link
       ref={chipRef}
       href={href}
-      className="t-label rounded-full border border-white/30 bg-black/40 px-4 py-2 text-[11px] text-white font-bold backdrop-blur-md transition-all duration-300 hover:border-ember hover:bg-black/60 hover:text-ember"
+      className=" border border-[#1a1a1a]/20 bg-white/80 px-4 py-2 text-[11px] font-bold backdrop-blur-md transition-all duration-300 hover:border-ember hover:bg-white hover:text-ember shadow-sm"
+      style={TEXT_STYLE}
       onMouseEnter={() => setVariant("ring")}
       onMouseLeave={() => setVariant("default")}
     >

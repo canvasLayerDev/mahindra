@@ -85,7 +85,7 @@ export function ImageReveal({
       <div ref={imageWrapperRef} className="relative h-full w-full">
         {hasError ? (
           <div className="flex h-full w-full items-center justify-center bg-ink-800 text-ember p-6">
-            <span className="t-label font-bold text-center">
+            <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">
               MAHINDRA · {alt || "MEDIA ASSET"}
             </span>
           </div>

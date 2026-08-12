@@ -36,15 +36,15 @@ export function Configurator() {
   return (
     <Section className="bg-ink-900 border-t border-line">
       <Container>
-        <p className="t-label text-ember mb-4">(04) INTERACTIVE STUDIO</p>
-        <h2 className="t-h1 mb-12">THAR ROXX COLOUR CONFIGURATOR</h2>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(04) INTERACTIVE STUDIO</p>
+        <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95] mb-12">THAR ROXX COLOUR CONFIGURATOR</h2>
 
         <div className="relative flex flex-col items-center justify-between rounded-3xl bg-ink-800 p-8 lg:p-16 border border-line">
           {/* Active Vehicle Display */}
           <div className="relative h-[300px] w-full max-w-[650px] lg:h-[400px]">
             {imgError ? (
               <div className="flex h-full w-full items-center justify-center bg-ink-700 text-ember rounded-2xl p-6">
-                <span className="t-label font-bold text-center">THAR ROXX · {activeVariant.name}</span>
+                <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">THAR ROXX · {activeVariant.name}</span>
               </div>
             ) : (
               <Image
@@ -62,7 +62,7 @@ export function Configurator() {
 
           {/* Color Chip Controls & Selection */}
           <div className="mt-8 flex flex-col items-center gap-6 z-20">
-            <p className="t-label text-bone">
+            <p className="font-mono text-xs uppercase tracking-wider font-medium text-bone">
               COLOUR: <span className="text-ember font-bold">{activeVariant.name}</span>
             </p>
 

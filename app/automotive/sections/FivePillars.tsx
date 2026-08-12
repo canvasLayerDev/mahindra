@@ -138,8 +138,8 @@ export function FivePillars() {
       <Container className="relative z-30 flex h-full flex-col justify-between py-16">
         {/* Top Header */}
         <div className="flex items-center justify-between">
-          <p className="t-label text-ember font-bold">(02) FIVE PILLARS OF MAHINDRA AUTOMOTIVE</p>
-          <span className="t-label rounded-full border border-ember/40 bg-ink-900/70 px-4 py-1.5 backdrop-blur-md text-ember">
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember font-bold">(02) FIVE PILLARS OF MAHINDRA AUTOMOTIVE</p>
+          <span className="font-mono text-xs uppercase tracking-wider font-medium rounded-full border border-ember/40 bg-ink-900/70 px-4 py-1.5 backdrop-blur-md text-ember">
             4K CINEMATIC SHOWCASE
           </span>
         </div>
@@ -148,15 +148,15 @@ export function FivePillars() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end my-auto">
           {/* Left Title & Subtitle */}
           <div className="lg:col-span-7">
-            <span className="t-label text-gold font-mono mb-2 block font-bold">
+            <span className="font-mono text-xs uppercase tracking-wider font-medium text-gold font-mono mb-2 block font-bold">
               {activePillar.subtitle}
             </span>
             <div className="overflow-hidden">
-              <h2 className="t-hero text-bone transition-transform duration-500 ease-out">
+              <h2 className="font-display text-[clamp(56px,9vw,200px)] uppercase tracking-[-0.02em] leading-[0.88] text-bone transition-transform duration-500 ease-out">
                 {activePillar.title}
               </h2>
             </div>
-            <p className="t-lead mt-4 text-bone-dim max-w-[55ch] text-lg">
+            <p className="font-body text-[clamp(20px,1.6vw,28px)] leading-tight mt-4 text-bone-dim max-w-[55ch] text-lg">
               {activePillar.desc}
             </p>
           </div>
@@ -164,19 +164,19 @@ export function FivePillars() {
           {/* Right Glassmorphism Specs Card */}
           <div className="lg:col-span-5">
             <div className="rounded-3xl border border-bone/20 bg-ink-900/60 p-6 backdrop-blur-xl shadow-2xl">
-              <p className="t-label text-ember mb-4 font-bold">ENGINEERING SPECIFICATIONS</p>
+              <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4 font-bold">ENGINEERING SPECIFICATIONS</p>
               <div className="space-y-3">
                 <div className="flex items-center justify-between border-b border-line pb-2">
                   <span className="text-sm font-medium text-bone">{activePillar.spec1}</span>
-                  <span className="t-label text-ember">✓ HIGHLIGHT</span>
+                  <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">✓ HIGHLIGHT</span>
                 </div>
                 <div className="flex items-center justify-between border-b border-line pb-2">
                   <span className="text-sm font-medium text-bone">{activePillar.spec2}</span>
-                  <span className="t-label text-ember">✓ HIGHLIGHT</span>
+                  <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">✓ HIGHLIGHT</span>
                 </div>
                 <div className="flex items-center justify-between pb-1">
                   <span className="text-sm font-medium text-bone">{activePillar.spec3}</span>
-                  <span className="t-label text-ember">✓ HIGHLIGHT</span>
+                  <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">✓ HIGHLIGHT</span>
                 </div>
               </div>
             </div>
@@ -185,7 +185,7 @@ export function FivePillars() {
 
         {/* Bottom Interactive Pillar Selector */}
         <div className="flex flex-col gap-4 border-t border-line pt-6 lg:flex-row lg:items-center lg:justify-between">
-          <span className="t-label text-bone-dim">SCROLL TO SWITCH PILLARS</span>
+          <span className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">SCROLL TO SWITCH PILLARS</span>
           <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
             {PILLARS.map((p, idx) => (
               <button
@@ -193,7 +193,7 @@ export function FivePillars() {
                 onClick={() => setActiveIdx(idx)}
                 onMouseEnter={() => setVariant("ring")}
                 onMouseLeave={() => setVariant("default")}
-                className={`t-label flex items-center gap-2 rounded-full border px-4 py-2 transition-all duration-300 ${
+                className={`font-mono text-xs uppercase tracking-wider font-medium flex items-center gap-2 rounded-full border px-4 py-2 transition-all duration-300 ${
                   idx === activeIdx
                     ? "border-ember bg-ember text-bone font-bold scale-105 shadow-lg shadow-ember/30"
                     : "border-line bg-ink-900/60 text-bone-dim hover:border-bone hover:text-bone"

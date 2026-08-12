@@ -24,9 +24,21 @@
   --color-foreground: var(--color-bone);
 
   /* Font families (mapped to CSS vars set by next/font) */
-  --font-display: var(--font-bebas-neue);
+  --font-display: var(--font-goldman);
   --font-body: var(--font-satoshi);
   --font-mono: var(--font-jetbrains-mono);
+}
+
+.goldman-regular {
+  font-family: var(--font-goldman), sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.goldman-bold {
+  font-family: var(--font-goldman), sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* ----------------------------------------------------------
@@ -101,68 +113,6 @@ body {
 }
 
 /* ----------------------------------------------------------
-   Type Scale Utilities
-   ---------------------------------------------------------- */
-
-/* Display hero — used for page titles */
-.t-hero {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(56px, 9vw, 200px);
-  font-weight: 400; /* Bebas Neue only has 400 */
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.88;
-  color: var(--color-bone);
-}
-
-/* Heading 1 — section titles */
-.t-h1 {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(40px, 5.5vw, 96px);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 0.95;
-  color: var(--color-bone);
-}
-
-/* Heading 2 — sub-section titles */
-.t-h2 {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(28px, 3.4vw, 56px);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 1.0;
-  color: var(--color-bone);
-}
-
-/* Lead — large body text */
-.t-lead {
-  font-family: var(--font-body), sans-serif;
-  font-size: clamp(20px, 1.6vw, 28px);
-  line-height: 1.5;
-  color: var(--color-bone-dim);
-  max-width: 62ch;
-}
-
-/* Body — standard text */
-.t-body {
-  font-family: var(--font-body), sans-serif;
-  font-size: 18px;
-  line-height: 1.55;
-  color: var(--color-bone-dim);
-  max-width: 68ch;
-}
-
-/* Label — mono eyebrow labels */
-.t-label {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--color-bone-dim);
-}
-
-/* ----------------------------------------------------------
    Hairline dividers
    ---------------------------------------------------------- */
 .hairline {
@@ -181,6 +131,7 @@ body {
    Reduced motion — global kill switch
    ---------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

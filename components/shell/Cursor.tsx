@@ -92,7 +92,7 @@ export function Cursor() {
   return (
     <div
       ref={cursorRef}
-      className="pointer-events-none fixed left-0 top-0 z-[99999] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center mix-blend-difference select-none"
+      className="pointer-events-none fixed left-0 top-0 z-[99999] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center mix-blend-difference select-none"
       style={{
         width: 10,
         height: 10,
@@ -100,7 +100,7 @@ export function Cursor() {
       }}
     >
       {variant === "view" && (
-        <span className="t-label text-[10px] font-bold tracking-widest text-ink-900">
+        <span className="font-mono text-xs uppercase tracking-wider font-medium text-[10px] font-bold tracking-widest text-ink-900">
           {cursorText || "VIEW"}
         </span>
       )}

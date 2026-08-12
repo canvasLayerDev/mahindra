@@ -45,11 +45,13 @@ export function Marquee({
       const dir = direction === "left" ? -1 : 1;
       let currentX = 0;
 
+      const speedScale = { value: 1 };
+
       // Base tick loop
       const tickerCallback = () => {
         if (isHovered && pauseOnHover) return;
 
-        const delta = speed * 1.5 * dir;
+        const delta = speed * 1.5 * dir * speedScale.value;
         currentX += delta;
 
         if (direction === "left" && Math.abs(currentX) >= totalWidth) {
@@ -70,10 +72,11 @@ export function Marquee({
         end: "bottom top",
         onUpdate: (self) => {
           const velocity = Math.abs(self.getVelocity() / 300);
-          gsap.to(track, {
-            timeScale: 1 + velocity,
+          gsap.to(speedScale, {
+            value: 1 + velocity,
             duration: 0.5,
             ease: "power2.out",
+            overwrite: "auto",
           });
         },
       });

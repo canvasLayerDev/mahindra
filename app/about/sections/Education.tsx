@@ -52,8 +52,8 @@ export function Education() {
   return (
     <Section className="bg-ink-900 border-t border-line">
       <Container>
-        <p className="t-label text-gold mb-4">(08) EDUCATION INSTITUTES</p>
-        <h2 className="t-h1 mb-16">SEVEN INSTITUTES OF ACADEMIC EXCELLENCE</h2>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium text-gold mb-4">(08) EDUCATION INSTITUTES</p>
+        <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95] mb-16">SEVEN INSTITUTES OF ACADEMIC EXCELLENCE</h2>
 
         <div className="border-t border-line">
           {INSTITUTES.map((inst, idx) => (
@@ -115,10 +115,10 @@ function InstituteRow({
         onMouseEnter={() => setVariant("ring")}
         onMouseLeave={() => setVariant("default")}
       >
-        <h3 className="t-h2 text-bone group-hover:text-gold transition-colors">
+        <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone group-hover:text-gold transition-colors">
           {institute.name}
         </h3>
-        <span className="t-h2 text-gold font-mono">{isOpen ? "−" : "+"}</span>
+        <span className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-gold font-mono">{isOpen ? "−" : "+"}</span>
       </button>
 
       <div ref={bodyRef} className="h-0 overflow-hidden opacity-0">
@@ -136,7 +136,7 @@ function InstituteRow({
             )}
           </div>
           <div className="lg:col-span-5">
-            <p className="t-lead text-bone-dim mb-6">{institute.desc}</p>
+            <p className="font-body text-[clamp(20px,1.6vw,28px)] leading-tight text-bone-dim mb-6">{institute.desc}</p>
             <AnimatedLink href="/about" underlineColor="bg-gold">
               Learn More →
             </AnimatedLink>

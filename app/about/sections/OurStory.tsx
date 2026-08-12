@@ -32,8 +32,8 @@ export function OurStory() {
   return (
     <div className="bg-ink-900 border-t border-line py-24">
       <Container className="mb-16">
-        <p className="t-label text-gold mb-4">(04) OUR STORY</p>
-        <h2 className="t-h1 mb-12">SEVEN DECADES OF TRANSFORMATION</h2>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium text-gold mb-4">(04) OUR STORY</p>
+        <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95] mb-12">SEVEN DECADES OF TRANSFORMATION</h2>
 
         <div className="max-w-[24ch] mb-16">
           <ScrubText className="font-display text-[clamp(28px,3.5vw,56px)] uppercase leading-tight text-bone">
@@ -70,8 +70,8 @@ export function OurStory() {
           >
             <span className="font-display text-7xl font-bold text-gold">{m.year}</span>
             <div>
-              <h3 className="t-h2 text-bone mb-2">{m.title}</h3>
-              <p className="t-body text-bone-dim text-sm">{m.desc}</p>
+              <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone mb-2">{m.title}</h3>
+              <p className="font-body text-base leading-relaxed text-bone-dim text-sm">{m.desc}</p>
             </div>
           </div>
         ))}

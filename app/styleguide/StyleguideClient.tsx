@@ -22,8 +22,8 @@ function Swatch({ name, token, hex, bgClass, textClass = "text-bone" }: SwatchPr
       />
       <div className={textClass}>
         <p className="text-sm font-medium">{name}</p>
-        <p className="t-label mt-1">{token}</p>
-        <p className="t-label">{hex}</p>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium mt-1">{token}</p>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium">{hex}</p>
       </div>
     </div>
   );
@@ -56,8 +56,8 @@ function TypeSample({ className, label, spec, sample }: TypeSampleProps) {
   return (
     <div className="border-b border-line pb-12">
       <div className="mb-4 flex items-baseline gap-4">
-        <span className="t-label text-ember">{label}</span>
-        <span className="t-label">{spec}</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">{label}</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium">{spec}</span>
       </div>
       <p className={className}>{sample}</p>
     </div>
@@ -66,40 +66,40 @@ function TypeSample({ className, label, spec, sample }: TypeSampleProps) {
 
 const typeSamples: TypeSampleProps[] = [
   {
-    className: "t-hero",
-    label: ".t-hero",
+    className: "font-display text-[clamp(56px,9vw,200px)] uppercase tracking-[-0.02em] leading-[0.88]",
+    label: ".font-display text-[clamp(56px,9vw,200px)] uppercase tracking-[-0.02em] leading-[0.88]",
     spec: "clamp(56px, 9vw, 200px) · Display · ls -0.02em · lh 0.88",
     sample: "TOGETHER WE RISE",
   },
   {
-    className: "t-h1",
-    label: ".t-h1",
+    className: "font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95]",
+    label: ".font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95]",
     spec: "clamp(40px, 5.5vw, 96px) · Display · lh 0.95",
     sample: "PURPOSE LED, PERFORMANCE DRIVEN",
   },
   {
-    className: "t-h2",
-    label: ".t-h2",
+    className: "font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none",
+    label: ".font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none",
     spec: "clamp(28px, 3.4vw, 56px) · Display · uppercase",
     sample: "NINE INDUSTRIES. ONE PURPOSE.",
   },
   {
-    className: "t-lead",
-    label: ".t-lead",
+    className: "font-body text-[clamp(20px,1.6vw,28px)] leading-tight",
+    label: ".font-body text-[clamp(20px,1.6vw,28px)] leading-tight",
     spec: "clamp(20px, 1.6vw, 28px) · Body · lh 1.5 · max-w 62ch",
     sample:
       "We bring together diverse, future-facing industries and communities to co-create a positive world, where one enables the other to Rise.",
   },
   {
-    className: "t-body",
-    label: ".t-body",
+    className: "font-body text-base leading-relaxed",
+    label: ".font-body text-base leading-relaxed",
     spec: "18px · Body · lh 1.55 · max-w 68ch",
     sample:
       "What began as a steel trading business seven decades ago, has grown into a global brand that traverses nations and sectors. Today, the Mahindra Group employs over 327,000 people across 100+ countries.",
   },
   {
-    className: "t-label",
-    label: ".t-label",
+    className: "font-mono text-xs uppercase tracking-wider font-medium",
+    label: ".font-mono text-xs uppercase tracking-wider font-medium",
     spec: "11px · Mono · uppercase · ls 0.18em · bone-dim",
     sample: "(01) AUTOMOTIVE",
   },
@@ -140,7 +140,7 @@ function ButtonInventory() {
       {/* Label link — mono style */}
       <a
         href="#"
-        className="t-label text-ember transition-colors duration-300 hover:text-bone"
+        className="font-mono text-xs uppercase tracking-wider font-medium text-ember transition-colors duration-300 hover:text-bone"
       >
         View All →
       </a>
@@ -171,7 +171,7 @@ function ButtonInventory() {
 function LayoutDemo() {
   return (
     <div className="space-y-8">
-      <p className="t-label text-ember">12-Column Grid Demo</p>
+      <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember">12-Column Grid Demo</p>
       <Grid cols={12}>
         {Array.from({ length: 12 }, (_, i) => (
           <div
@@ -183,7 +183,7 @@ function LayoutDemo() {
         ))}
       </Grid>
 
-      <p className="t-label text-ember mt-8">Responsive Grid (4 cols)</p>
+      <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mt-8">Responsive Grid (4 cols)</p>
       <Grid cols={4}>
         {Array.from({ length: 4 }, (_, i) => (
           <div
@@ -209,7 +209,7 @@ function SpacingDemo() {
     <div className="space-y-3">
       {steps.map((px) => (
         <div key={px} className="flex items-center gap-4">
-          <span className="t-label w-16 text-right">{px}px</span>
+          <span className="font-mono text-xs uppercase tracking-wider font-medium w-16 text-right">{px}px</span>
           <div
             className="h-3 rounded-sm bg-ember"
             style={{ width: px }}
@@ -229,19 +229,19 @@ function ContrastAudit() {
     <div className="space-y-4">
       <div className="flex items-center gap-4 rounded-lg bg-ink-900 p-6 border border-line">
         <span className="text-bone text-lg font-medium">Bone on Ink-900</span>
-        <span className="t-label">15.8:1 — WCAG AAA ✓</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium">15.8:1 — WCAG AAA ✓</span>
       </div>
       <div className="flex items-center gap-4 rounded-lg bg-ink-900 p-6 border border-line">
         <span className="text-ember text-lg font-bold">Ember on Ink-900 (bold 18px+)</span>
-        <span className="t-label">4.6:1 — WCAG AA Large ✓</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium">4.6:1 — WCAG AA Large ✓</span>
       </div>
       <div className="flex items-center gap-4 rounded-lg bg-ink-900 p-6 border border-line">
         <span className="text-bone-dim">Bone-dim on Ink-900</span>
-        <span className="t-label">5.2:1 — WCAG AA ✓</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium">5.2:1 — WCAG AA ✓</span>
       </div>
       <div className="flex items-center gap-4 rounded-lg bg-ink-800 p-6 border border-line">
         <span className="text-gold text-lg font-bold">Gold on Ink-800</span>
-        <span className="t-label">Heritage accent — large text only</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium">Heritage accent — large text only</span>
       </div>
     </div>
   );
@@ -255,11 +255,11 @@ function HairlineDemo() {
   return (
     <div className="flex items-center gap-8">
       <div className="flex-1">
-        <p className="t-label mb-2">Horizontal hairline</p>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium mb-2">Horizontal hairline</p>
         <div className="hairline" />
       </div>
       <div className="flex flex-col items-center">
-        <p className="t-label mb-2">Vertical</p>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium mb-2">Vertical</p>
         <div className="hairline-v h-16" />
       </div>
     </div>
@@ -276,9 +276,9 @@ export function StyleguideClient() {
       {/* Header */}
       <Section noPadding className="pt-12 lg:pt-24 pb-12">
         <Container>
-          <p className="t-label text-ember mb-6">DESIGN SYSTEM</p>
-          <h1 className="t-h1">MAHINDRA RISE</h1>
-          <p className="t-lead mt-6 text-bone-dim">
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-6">DESIGN SYSTEM</p>
+          <h1 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95]">MAHINDRA RISE</h1>
+          <p className="font-body text-[clamp(20px,1.6vw,28px)] leading-tight mt-6 text-bone-dim">
             Ink & Ember — Visual contract for the Awwwards-grade Mahindra redesign.
             Every colour, type style, and interactive element defined here governs
             all three pages.
@@ -291,8 +291,8 @@ export function StyleguideClient() {
       {/* Colour Palette */}
       <Section>
         <Container>
-          <p className="t-label text-ember mb-4">(01) PALETTE</p>
-          <h2 className="t-h2 mb-16">INK & EMBER</h2>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(01) PALETTE</p>
+          <h2 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none mb-16">INK & EMBER</h2>
           <Grid cols={3}>
             {swatches.map((swatch) => (
               <Swatch key={swatch.token} {...swatch} />
@@ -306,8 +306,8 @@ export function StyleguideClient() {
       {/* Type Scale */}
       <Section>
         <Container>
-          <p className="t-label text-ember mb-4">(02) TYPOGRAPHY</p>
-          <h2 className="t-h2 mb-16">TYPE SCALE</h2>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(02) TYPOGRAPHY</p>
+          <h2 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none mb-16">TYPE SCALE</h2>
           <div className="space-y-16">
             {typeSamples.map((sample) => (
               <TypeSample key={sample.label} {...sample} />
@@ -321,8 +321,8 @@ export function StyleguideClient() {
       {/* Buttons & Links */}
       <Section>
         <Container>
-          <p className="t-label text-ember mb-4">(03) INTERACTIVE</p>
-          <h2 className="t-h2 mb-16">BUTTONS & LINKS</h2>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(03) INTERACTIVE</p>
+          <h2 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none mb-16">BUTTONS & LINKS</h2>
           <ButtonInventory />
         </Container>
       </Section>
@@ -332,11 +332,11 @@ export function StyleguideClient() {
       {/* Layout Primitives */}
       <Section>
         <Container>
-          <p className="t-label text-ember mb-4">(04) LAYOUT</p>
-          <h2 className="t-h2 mb-16">GRID & SPACING</h2>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(04) LAYOUT</p>
+          <h2 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none mb-16">GRID & SPACING</h2>
           <LayoutDemo />
           <div className="mt-16">
-            <p className="t-label text-ember mb-4">SPACING SCALE</p>
+            <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">SPACING SCALE</p>
             <SpacingDemo />
           </div>
         </Container>
@@ -347,8 +347,8 @@ export function StyleguideClient() {
       {/* Hairlines */}
       <Section>
         <Container>
-          <p className="t-label text-ember mb-4">(05) DIVIDERS</p>
-          <h2 className="t-h2 mb-16">HAIRLINES</h2>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(05) DIVIDERS</p>
+          <h2 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none mb-16">HAIRLINES</h2>
           <HairlineDemo />
         </Container>
       </Section>
@@ -358,8 +358,8 @@ export function StyleguideClient() {
       {/* Contrast Audit */}
       <Section>
         <Container>
-          <p className="t-label text-ember mb-4">(06) ACCESSIBILITY</p>
-          <h2 className="t-h2 mb-16">CONTRAST AUDIT</h2>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(06) ACCESSIBILITY</p>
+          <h2 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none mb-16">CONTRAST AUDIT</h2>
           <ContrastAudit />
         </Container>
       </Section>
@@ -368,7 +368,7 @@ export function StyleguideClient() {
       <Section noPadding className="pb-24 pt-12">
         <Container>
           <div className="hairline mb-8" />
-          <p className="t-label">
+          <p className="font-mono text-xs uppercase tracking-wider font-medium">
             Unofficial concept redesign. All trademarks and media belong to
             Mahindra & Mahindra Ltd.
           </p>

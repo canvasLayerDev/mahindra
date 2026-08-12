@@ -24,8 +24,8 @@ export function Commercial() {
   return (
     <Section className="bg-ink-900 border-t border-line">
       <Container>
-        <p className="t-label text-ember mb-4">(05) COMMERCIAL &amp; LOGISTICS</p>
-        <h2 className="t-h1 mb-16">COMMERCIAL VEHICLE RANGE</h2>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(05) COMMERCIAL &amp; LOGISTICS</p>
+        <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95] mb-16">COMMERCIAL VEHICLE RANGE</h2>
 
         <Grid cols={3} className="gap-8">
           {COMMERCIAL_VEHICLES.map((item) => (
@@ -47,13 +47,13 @@ function CommercialCard({
   return (
     <div className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-ink-800 p-6 border border-line transition-all duration-300 hover:border-ember">
       <div className="flex justify-between items-start mb-4">
-        <span className="t-label text-ember">{item.category}</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium text-ember">{item.category}</span>
       </div>
 
       <div className="relative h-[160px] w-full flex items-center justify-center my-4">
         {hasError ? (
           <div className="flex h-full w-full items-center justify-center bg-ink-700 text-ember rounded-lg p-2">
-            <span className="t-label font-bold text-center">{item.name}</span>
+            <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">{item.name}</span>
           </div>
         ) : (
           <Image
@@ -68,7 +68,7 @@ function CommercialCard({
       </div>
 
       <div className="border-t border-line/50 pt-4">
-        <h3 className="t-h2 text-bone text-xl group-hover:text-ember transition-colors">
+        <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone text-xl group-hover:text-ember transition-colors">
           {item.name}
         </h3>
       </div>

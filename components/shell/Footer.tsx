@@ -75,9 +75,10 @@ export function Footer() {
               alt="Mahindra Rise"
               width={200}
               height={36}
+              style={{ width: "auto", height: "auto" }}
               className="h-9 w-auto"
             />
-            <p className="t-lead mt-6 text-bone-dim">
+            <p className="font-body text-[clamp(20px,1.6vw,28px)] leading-tight mt-6 text-bone-dim">
               Purpose Led. Performance Driven. Future Ready.
             </p>
           </div>
@@ -87,7 +88,7 @@ export function Footer() {
               href="https://www.linkedin.com/company/mahindra-&amp;-mahindra/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-ink-800 text-bone transition-colors hover:border-ember hover:text-ember"
+              className="flex h-12 w-12 items-center justify-center border border-line bg-ink-800 text-bone transition-colors hover:border-ember hover:text-ember"
               aria-label="LinkedIn"
               onMouseEnter={() => setVariant("ring")}
               onMouseLeave={() => setVariant("default")}
@@ -101,7 +102,7 @@ export function Footer() {
               href="https://twitter.com/MahindraRise"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-ink-800 text-bone transition-colors hover:border-ember hover:text-ember"
+              className="flex h-12 w-12 items-center justify-center border border-line bg-ink-800 text-bone transition-colors hover:border-ember hover:text-ember"
               aria-label="Twitter X"
               onMouseEnter={() => setVariant("ring")}
               onMouseLeave={() => setVariant("default")}
@@ -119,7 +120,7 @@ export function Footer() {
         <Grid cols={3} className="gap-12 lg:gap-16">
           {/* Col 1: Business Verticals */}
           <div>
-            <p className="t-label mb-6 text-ember font-bold">(01) BUSINESS VERTICALS</p>
+            <p className="font-mono text-xs uppercase tracking-wider font-medium mb-6 text-ember font-bold">(01) BUSINESS VERTICALS</p>
             <ul className="space-y-3">
               {VERTICALS.map((item) => (
                 <li key={item.name}>
@@ -136,7 +137,7 @@ export function Footer() {
 
           {/* Col 2: Action CTAs */}
           <div>
-            <p className="t-label mb-6 text-ember font-bold">(02) QUICK ACTIONS</p>
+            <p className="font-mono text-xs uppercase tracking-wider font-medium mb-6 text-ember font-bold">(02) QUICK ACTIONS</p>
             <ul className="space-y-3">
               {CTAS.map((cta) => (
                 <li key={cta.label}>
@@ -156,12 +157,12 @@ export function Footer() {
 
           {/* Col 3: Address & Info */}
           <div>
-            <p className="t-label mb-6 text-ember font-bold">(03) HEADQUARTERS</p>
-            <p className="t-body text-bone-dim mb-4">
+            <p className="font-mono text-xs uppercase tracking-wider font-medium mb-6 text-ember font-bold">(03) HEADQUARTERS</p>
+            <p className="font-body text-base leading-relaxed text-bone-dim mb-4">
               Mahindra Towers, Dr. G.M. Bhosale Marg, P.K. Kurne Chowk, Worli,
               Mumbai 400018
             </p>
-            <p className="t-label mt-8 text-bone-dim">SINCE 1945 · 81 YEARS</p>
+            <p className="font-mono text-xs uppercase tracking-wider font-medium mt-8 text-bone-dim">SINCE 1945 · 81 YEARS</p>
           </div>
         </Grid>
 
@@ -181,7 +182,7 @@ export function Footer() {
           <p className="t-label text-bone-dim">
             © 2026 MAHINDRA &amp; MAHINDRA LTD. ALL RIGHTS RESERVED.
           </p>
-          <p className="t-label text-bone-dim">
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim">
             UNOFFICIAL CONCEPT REDESIGN · CREATED FOR AWWWARDS PRESENTATION
           </p>
         </div>

@@ -1,124 +1,129 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Container } from "@/components/layout";
-import { HorizontalRail } from "@/components/motion/HorizontalRail";
 import { useCursor } from "@/lib/hooks/useCursor";
 import { getReducedMotion } from "@/lib/motion";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
-const VERTICAL_CARDS = [
+const INDUSTRIES = [
   {
     num: "01",
+    eyebrow: "Since 1945",
     name: "Automotive",
     desc: "Transforming mobility with legendary SUVs, LCVs & electric powertrains.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Automotive_.webp",
+      "https://www.mahindra.com/sites/default/files/2025-01/Mahindra_BE-6%26-XEV-9-Banner-Global-Premiere-Banner_REVISED.webp",
     href: "/automotive",
   },
   {
     num: "02",
+    eyebrow: "World's #1 by volume",
     name: "Farm Equipment",
-    desc: "Empowering farmers worldwide with world's #1 tractor brand by volume.",
+    desc: "Empowering farmers worldwide with the world's #1 tractor brand by volume.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Farming_%20%281%29.webp",
+      "https://www.mahindra.com/sites/default/files/2023-08/our-business-farm-equipment-spotlight-new.jpg",
     href: "/#what-we-do",
   },
   {
     num: "03",
+    eyebrow: "Rural & semi-urban",
     name: "Financial Services",
     desc: "Enabling rural & semi-urban prosperity with tailormade financial solutions.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Financial%20Services.webp",
+      "/122776f7-3986-4424-abde-945bcfae9bd7.png",
     href: "/#what-we-do",
   },
   {
     num: "04",
+    eyebrow: "Tech Mahindra · Bristlecone",
     name: "Technology Services",
-    desc: "Tech Mahindra & Bristlecone driving next-gen digital transformation.",
+    desc: "Driving next-gen digital transformation across global enterprises.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Technology%20Services.webp",
+      "/m4.png",
     href: "/#what-we-do",
   },
   {
     num: "05",
+    eyebrow: "Club Mahindra",
     name: "Hospitality",
-    desc: "Club Mahindra creating unforgettable family holiday experiences.",
+    desc: "Creating unforgettable family holiday experiences across destinations.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do%203.webp",
+      "/m5.png",
     href: "/#what-we-do",
   },
   {
     num: "06",
+    eyebrow: "Integrated supply chain",
     name: "Logistics",
     desc: "Integrated supply chain & mobility solutions across sectors.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Logistics%20Services.webp",
+      "/m6.png",
     href: "/#what-we-do",
   },
   {
     num: "07",
+    eyebrow: "Mahindra Lifespaces",
     name: "Real Estate",
-    desc: "Mahindra Lifespaces building sustainable urban habitats & spaces.",
+    desc: "Building sustainable urban habitats & spaces for modern living.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Real%20Estate%20Services.webp",
+      "/m7.png",
     href: "/#what-we-do",
   },
   {
     num: "08",
+    eyebrow: "Mahindra Susten",
     name: "Renewable Energy",
-    desc: "Mahindra Susten powering green transition with solar utility plants.",
+    desc: "Powering the green transition with utility-scale solar plants.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Renewable%20Services.webp",
+      "/m8.png",
     href: "/#what-we-do",
   },
   {
     num: "09",
+    eyebrow: "Growth gems",
     name: "Emerging Businesses",
-    desc: "Aerostructures, clean energy, recycling & growth gem investments.",
+    desc: "Aerostructures, clean energy, recycling & growth-gem investments.",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Emerging%20Business%20and%20Equity%20Investments.webp",
+      "/m9.png",
     href: "/#what-we-do",
   },
 ];
 
+const NAV_LINKS = ["Home", "Automotive", "Industries", "Careers", "About"];
+
 export function WhatWeDo() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const { setVariant, setCursorText } = useCursor();
+
+  const active = INDUSTRIES[activeIndex];
+  const previewCards = [1, 2, 3, 4].map(
+    (offset) => INDUSTRIES[(activeIndex + offset) % INDUSTRIES.length]
+  );
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % INDUSTRIES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [activeIndex]);
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
-      const progress = progressBarRef.current;
-      if (!section || getReducedMotion()) return;
-
-      // Track horizontal rail progress for progress bar & card index
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: "bottom bottom",
-        onUpdate: (self) => {
-          if (progress) {
-            gsap.set(progress, { scaleX: self.progress });
-          }
-          const idx = Math.min(
-            VERTICAL_CARDS.length - 1,
-            Math.floor(self.progress * VERTICAL_CARDS.length)
-          );
-          setActiveIndex(idx);
-        },
-      });
+      if (getReducedMotion() || !stageRef.current) return;
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          "[data-fade-in]",
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.06 }
+        );
+      }, stageRef);
+      return () => ctx.revert();
     },
-    { scope: sectionRef }
+    { dependencies: [activeIndex] }
   );
 
   return (
@@ -182,8 +187,8 @@ function VerticalCard({
         </div>
       ) : (
         <Image
-          src={card.image}
-          alt={card.name}
+          src={active.image}
+          alt={active.name}
           fill
           sizes="(max-width: 768px) 82vw, (max-width: 1200px) 45vw, 34vw"
           onError={() => setHasError(true)}
@@ -217,6 +222,24 @@ function VerticalCard({
           <span>→</span>
         </div>
       </div>
-    </Link>
+    </section>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="11" cy="11" r="7" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  );
+}
+
+function UserIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+    </svg>
   );
 }

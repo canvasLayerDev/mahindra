@@ -33,12 +33,12 @@ export function Leaders() {
   return (
     <Section className="bg-ink-900 border-t border-line">
       <Container>
-        <p className="t-label text-gold mb-4">(05) LEADERSHIP</p>
-        <h2 className="t-h1 mb-16">MEET OUR LEADERS</h2>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium text-gold mb-4">(05) LEADERSHIP</p>
+        <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95] mb-16">MEET OUR LEADERS</h2>
 
         {/* Group 1: Board of Directors */}
         <div className="mb-20">
-          <h3 className="t-h2 text-gold mb-8">BOARD OF DIRECTORS</h3>
+          <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-gold mb-8">BOARD OF DIRECTORS</h3>
           <Grid cols={4} className="gap-6">
             {BOARD_DIRECTORS.map((person) => (
               <LeaderCard key={person.name} person={person} />
@@ -48,7 +48,7 @@ export function Leaders() {
 
         {/* Group 2: Executive Board */}
         <div>
-          <h3 className="t-h2 text-bone-dim mb-8">GROUP EXECUTIVE BOARD</h3>
+          <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone-dim mb-8">GROUP EXECUTIVE BOARD</h3>
           <Grid cols={4} className="gap-6">
             {EXECUTIVE_BOARD.map((person) => (
               <LeaderCard key={person.name} person={person} />
@@ -83,7 +83,7 @@ function LeaderCard({
       {/* Portrait */}
       {imgError ? (
         <div className="absolute inset-0 bg-ink-800 flex items-center justify-center p-4 text-gold">
-          <span className="t-label font-bold text-center">{person.name}</span>
+          <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">{person.name}</span>
         </div>
       ) : (
         <Image
@@ -101,10 +101,10 @@ function LeaderCard({
 
       {/* Info Slide Up */}
       <div className="relative z-20 p-6 transition-transform duration-300 group-hover:-translate-y-2">
-        <h4 className="t-h2 text-bone text-xl group-hover:text-gold transition-colors">
+        <h4 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone text-xl group-hover:text-gold transition-colors">
           {person.name}
         </h4>
-        <p className="t-label text-bone-dim mt-1 text-[11px]">{person.title}</p>
+        <p className="font-mono text-xs uppercase tracking-wider font-medium text-bone-dim mt-1 text-[11px]">{person.title}</p>
       </div>
     </div>
   );

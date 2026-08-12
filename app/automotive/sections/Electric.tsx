@@ -21,8 +21,8 @@ export function Electric() {
       <div className="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full bg-[#00D2B5]/10 blur-[150px]" />
 
       <Container className="relative z-10">
-        <p className="t-label text-[#00D2B5] mb-4">(06) ELECTRIC MOBILITY</p>
-        <h2 className="t-h1 mb-16 text-bone">
+        <p className="font-mono text-xs uppercase tracking-wider font-medium text-[#00D2B5] mb-4">(06) ELECTRIC MOBILITY</p>
+        <h2 className="font-display text-[clamp(30px,5.5vw,45px)] uppercase leading-[0.95] mb-16 text-bone">
           LAST MILE &amp; PASSENGER <span className="text-[#00D2B5]">ELECTRIC</span>
         </h2>
 
@@ -46,14 +46,14 @@ function ElectricCard({
   return (
     <div className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-ink-800 p-6 border border-line transition-all duration-300 hover:border-[#00D2B5]">
       <div className="flex justify-between items-start mb-4">
-        <span className="t-label text-[#00D2B5] font-bold">{item.tag}</span>
+        <span className="font-mono text-xs uppercase tracking-wider font-medium text-[#00D2B5] font-bold">{item.tag}</span>
         <span className="h-2 w-2 rounded-full bg-[#00D2B5] animate-pulse" />
       </div>
 
       <div className="relative h-[180px] w-full flex items-center justify-center my-4">
         {hasError ? (
           <div className="flex h-full w-full items-center justify-center bg-ink-700 text-[#00D2B5] rounded-lg p-2">
-            <span className="t-label font-bold text-center">{item.name}</span>
+            <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">{item.name}</span>
           </div>
         ) : (
           <Image
@@ -68,7 +68,7 @@ function ElectricCard({
       </div>
 
       <div className="border-t border-line/50 pt-4">
-        <h3 className="t-h2 text-bone text-xl group-hover:text-[#00D2B5] transition-colors">
+        <h3 className="font-display text-[clamp(28px,3.4vw,56px)] uppercase leading-none text-bone text-xl group-hover:text-[#00D2B5] transition-colors">
           {item.name}
         </h3>
       </div>

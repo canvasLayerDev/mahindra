@@ -62,13 +62,13 @@ export function AutoHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Text Column */}
           <div className="lg:col-span-7">
-            <p className="t-label text-ember mb-4">(01) AUTOMOTIVE EXCELLENCE</p>
-            <RevealText as="h1" split="lines" className="t-hero text-bone mb-6">
+            <p className="font-mono text-xs uppercase tracking-wider font-medium text-ember mb-4">(01) AUTOMOTIVE EXCELLENCE</p>
+            <RevealText as="h1" split="lines" className="font-display text-[clamp(56px,9vw,200px)] uppercase tracking-[-0.02em] leading-[0.88] text-bone mb-6">
               YOUR DREAM SUV,
               <br />
               <span className="text-ember">JUST A FEW CLICKS AWAY.</span>
             </RevealText>
-            <p className="t-lead text-bone-dim mb-8">
+            <p className="font-body text-[clamp(20px,1.6vw,28px)] leading-tight text-bone-dim mb-8">
               We&apos;ve made booking your favourite SUV a breeze. Just login, review your
               details and pay to book.
             </p>
@@ -91,7 +91,7 @@ export function AutoHero() {
             >
               {tharImgError ? (
                 <div className="flex h-full w-full items-center justify-center bg-ink-800 text-ember rounded-2xl p-6">
-                  <span className="t-label font-bold text-center">THAR ROXX</span>
+                  <span className="font-mono text-xs uppercase tracking-wider font-medium font-bold text-center">THAR ROXX</span>
                 </div>
               ) : (
                 <Image
