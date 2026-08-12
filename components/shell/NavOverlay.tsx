@@ -23,32 +23,46 @@ const NAV_LINKS = [
       "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Automotive_.webp",
   },
   {
-    label: "THE GROUP",
-    href: "/about",
+    label: "BUSINESSES",
+    href: "/businesses",
     num: "(03)",
-    image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Technology%20Services.webp",
-  },
-  {
-    label: "WHAT WE DO",
-    href: "/#what-we-do",
-    num: "(04)",
     image:
       "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Financial%20Services.webp",
   },
   {
-    label: "CAREERS",
-    href: "/#news",
+    label: "LEADERSHIP",
+    href: "/leadership",
+    num: "(04)",
+    image:
+      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Technology%20Services.webp",
+  },
+  {
+    label: "INVESTORS",
+    href: "/investors",
     num: "(05)",
+    image:
+      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Renewable%20Services.webp",
+  },
+  {
+    label: "CAREERS",
+    href: "/careers",
+    num: "(06)",
     image:
       "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Real%20Estate%20Services.webp",
   },
   {
-    label: "STYLEGUIDE",
-    href: "/styleguide",
-    num: "(06)",
+    label: "THE GROUP",
+    href: "/about",
+    num: "(07)",
     image:
-      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Renewable%20Services.webp",
+      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Technology%20Services.webp",
+  },
+  {
+    label: "CONTACT US",
+    href: "/contact",
+    num: "(08)",
+    image:
+      "https://www.mahindra.com/sites/default/files/2026-03/Mahindra_What%20We%20Do-Automotive_.webp",
   },
 ];
 

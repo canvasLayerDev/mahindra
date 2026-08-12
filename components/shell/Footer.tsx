@@ -14,24 +14,24 @@ if (typeof window !== "undefined") {
 }
 
 const VERTICALS = [
-  "Automotive",
-  "Farm Equipment",
-  "Financial Services",
-  "Technology Services",
-  "Hospitality",
-  "Logistics",
-  "Real Estate",
-  "Renewable Energy",
-  "Emerging Businesses",
+  { name: "Automotive", href: "/automotive" },
+  { name: "Farm Equipment", href: "/businesses" },
+  { name: "Financial Services", href: "/businesses" },
+  { name: "Technology Services", href: "/businesses" },
+  { name: "Hospitality & Resorts", href: "/businesses" },
+  { name: "Logistics", href: "/businesses" },
+  { name: "Real Estate", href: "/businesses" },
+  { name: "Renewable Energy", href: "/businesses" },
+  { name: "Emerging Businesses", href: "/businesses" },
 ];
 
 const CTAS = [
-  { label: "Buy an SUV", href: "/automotive" },
-  { label: "Explore our tractors", href: "/#what-we-do" },
-  { label: "Experience the latest AI", href: "/#news" },
-  { label: "Get a loan", href: "/#what-we-do" },
-  { label: "Book a holiday", href: "/#what-we-do" },
-  { label: "Buy a home", href: "/#what-we-do" },
+  { label: "Explore SUV Range", href: "/automotive" },
+  { label: "Business Verticals", href: "/businesses" },
+  { label: "Executive Leadership", href: "/leadership" },
+  { label: "Financial Reports & Stocks", href: "/investors" },
+  { label: "Career Opportunities", href: "/careers" },
+  { label: "Contact Global Desk", href: "/contact" },
 ];
 
 export function Footer() {
@@ -46,9 +46,9 @@ export function Footer() {
 
       gsap.fromTo(
         riseEl,
-        { color: "#E2E8F0" },
+        { color: "#1C1C1F" },
         {
-          color: "#0D0E10",
+          color: "#F2F0EB",
           scrollTrigger: {
             trigger: riseEl,
             start: "top 90%",
@@ -122,12 +122,12 @@ export function Footer() {
             <p className="t-label mb-6 text-ember font-bold">(01) BUSINESS VERTICALS</p>
             <ul className="space-y-3">
               {VERTICALS.map((item) => (
-                <li key={item}>
+                <li key={item.name}>
                   <Link
-                    href="/#what-we-do"
-                    className="text-sm font-medium text-bone-dim transition-colors hover:text-bone"
+                    href={item.href}
+                    className="text-sm font-medium text-bone-dim transition-colors hover:text-ember"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -169,7 +169,7 @@ export function Footer() {
         <div className="mt-20 overflow-hidden text-center select-none">
           <h2
             ref={riseTextRef}
-            className="font-display text-[clamp(80px,18vw,320px)] uppercase leading-none tracking-tight font-extrabold text-line transition-colors duration-200"
+            className="font-display text-[clamp(80px,18vw,320px)] uppercase leading-none tracking-tight font-extrabold text-ink-700 transition-colors duration-200"
           >
             RISE.
           </h2>
@@ -178,7 +178,7 @@ export function Footer() {
         {/* Bottom copyright row */}
         <div className="hairline mt-12 mb-8" />
         <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
-          <p className="t-label">
+          <p className="t-label text-bone-dim">
             © 2026 MAHINDRA &amp; MAHINDRA LTD. ALL RIGHTS RESERVED.
           </p>
           <p className="t-label text-bone-dim">

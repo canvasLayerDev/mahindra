@@ -128,7 +128,7 @@ export function WhatWeDo() {
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
             <p className="t-label text-ember font-bold mb-3">(02) WHAT WE DO</p>
-            <h2 className="t-h1">NINE INDUSTRIES. ONE PURPOSE.</h2>
+            <h2 className="t-h1 text-bone">NINE INDUSTRIES. ONE PURPOSE.</h2>
           </div>
           <div className="t-label font-mono text-lg text-bone font-bold">
             <span className="text-ember">0{activeIndex + 1}</span> / 09
@@ -165,7 +165,7 @@ function VerticalCard({
   return (
     <Link
       href={card.href}
-      className="group relative flex h-[70vh] min-h-[480px] max-h-[640px] w-[82vw] md:w-[45vw] lg:w-[34vw] shrink-0 flex-col justify-between overflow-hidden rounded-3xl bg-white p-8 border border-black/10 shadow-lg transition-all duration-500 hover:border-ember hover:shadow-2xl hover:shadow-ember/10"
+      className="group relative flex h-[70vh] min-h-[480px] max-h-[640px] w-[82vw] md:w-[45vw] lg:w-[34vw] shrink-0 flex-col justify-between overflow-hidden rounded-3xl bg-ink-800 p-8 border border-line transition-all duration-500 hover:border-ember hover:shadow-2xl hover:shadow-ember/20"
       onMouseEnter={() => {
         setVariant("view");
         setCursorText("EXPLORE");
@@ -177,7 +177,7 @@ function VerticalCard({
     >
       {/* Background WebP Image */}
       {hasError ? (
-        <div className="absolute inset-0 bg-ink-700 flex items-center justify-center p-6 text-ember">
+        <div className="absolute inset-0 bg-ink-800 flex items-center justify-center p-6 text-ember">
           <span className="t-label font-bold text-center">MAHINDRA · {card.name}</span>
         </div>
       ) : (
@@ -187,29 +187,29 @@ function VerticalCard({
           fill
           sizes="(max-width: 768px) 82vw, (max-width: 1200px) 45vw, 34vw"
           onError={() => setHasError(true)}
-          className="object-cover transition-all duration-700 ease-out group-hover:scale-105"
+          className="object-cover grayscale-[0.35] transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
         />
       )}
 
-      {/* Elegant Gradient Overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/20 to-black/40" />
+      {/* Dark Gradient Overlay */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-ink-900 via-ink-900/40 to-ink-900/60" />
 
       {/* Top Number Badge */}
       <div className="relative z-20 flex justify-between items-start">
-        <span className="t-label font-mono text-sm font-bold text-white group-hover:text-ember transition-colors">
+        <span className="t-label font-mono text-sm font-bold text-bone-dim group-hover:text-ember transition-colors">
           ({card.num})
         </span>
-        <span className="t-label rounded-full border border-white/40 bg-black/40 px-3 py-1 text-[10px] text-white font-bold backdrop-blur-md">
+        <span className="t-label rounded-full border border-bone/30 bg-ink-900/70 px-3 py-1 text-[10px] text-bone font-bold backdrop-blur-md">
           VERTICAL
         </span>
       </div>
 
       {/* Bottom Info Content */}
       <div className="relative z-20">
-        <h3 className="t-h2 text-white group-hover:text-ember transition-colors drop-shadow-md">
+        <h3 className="t-h2 text-bone group-hover:text-ember transition-colors">
           {card.name}
         </h3>
-        <p className="t-body text-white/90 font-medium mt-3 text-sm line-clamp-2">
+        <p className="t-body text-bone-dim mt-3 text-sm line-clamp-2">
           {card.desc}
         </p>
         <div className="mt-6 flex items-center gap-2 t-label text-ember font-bold transition-transform duration-300 group-hover:translate-x-2">

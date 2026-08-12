@@ -34,10 +34,10 @@ export function ScrubText({
 
       gsap.fromTo(
         words,
-        { opacity: 0.2, color: "#8E8C87" },
+        { opacity: 0.25, color: "#9E9E9E" },
         {
           opacity: 1,
-          color: "#0D0E10", // Crisp Charcoal Black for Light Theme
+          color: "#F5F5F7",
           stagger: 0.1,
           ease: "none",
           scrollTrigger: {
@@ -64,7 +64,7 @@ export function ScrubText({
         <span
           key={idx}
           className="scrub-word inline-block mr-[0.25em] transition-colors duration-100"
-          style={{ opacity: 0.2, color: "#8E8C87" }}
+          style={{ opacity: 0.25, color: "#9E9E9E" }}
         >
           {word}
         </span>

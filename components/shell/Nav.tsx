@@ -45,12 +45,12 @@ export function Nav() {
     <>
       <header
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-[9980] flex items-center justify-between px-6 py-4 lg:px-[120px] bg-white/85 backdrop-blur-xl border-b border-black/[0.08] shadow-sm pointer-events-auto transition-transform will-change-transform"
+        className="fixed top-0 left-0 right-0 z-[9980] flex items-center justify-between px-6 py-6 lg:px-[120px] lg:py-8 mix-blend-difference pointer-events-none transition-transform will-change-transform"
       >
-        {/* Left Brand Logo */}
+        {/* Left Logo */}
         <Link
           href="/"
-          className="relative block h-7 w-40 lg:h-8 lg:w-48"
+          className="pointer-events-auto relative block h-7 w-40 lg:h-8 lg:w-48"
           onMouseEnter={() => setVariant("ring")}
           onMouseLeave={() => setVariant("default")}
         >
@@ -63,9 +63,9 @@ export function Nav() {
           />
         </Link>
 
-        {/* Right Navigation Links & Pill Menu Trigger */}
-        <nav className="flex items-center gap-8 lg:gap-10">
-          <div className="hidden md:flex items-center gap-8">
+        {/* Right Links & Menu Trigger */}
+        <nav className="pointer-events-auto flex items-center gap-8 lg:gap-12">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             <Link
               href="/"
               className={`t-label font-bold transition-colors duration-300 ${
@@ -87,14 +87,54 @@ export function Nav() {
               AUTOMOTIVE
             </Link>
             <Link
-              href="/about"
+              href="/businesses"
               className={`t-label font-bold transition-colors duration-300 ${
-                pathname === "/about" ? "text-ember" : "text-bone hover:text-ember"
+                pathname === "/businesses" ? "text-ember" : "text-bone hover:text-ember"
               }`}
               onMouseEnter={() => setVariant("ring")}
               onMouseLeave={() => setVariant("default")}
             >
-              THE GROUP
+              BUSINESSES
+            </Link>
+            <Link
+              href="/leadership"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/leadership" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              LEADERSHIP
+            </Link>
+            <Link
+              href="/investors"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/investors" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              INVESTORS
+            </Link>
+            <Link
+              href="/careers"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/careers" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              CAREERS
+            </Link>
+            <Link
+              href="/contact"
+              className={`t-label font-bold transition-colors duration-300 ${
+                pathname === "/contact" ? "text-ember" : "text-bone hover:text-ember"
+              }`}
+              onMouseEnter={() => setVariant("ring")}
+              onMouseLeave={() => setVariant("default")}
+            >
+              CONTACT
             </Link>
           </div>
 
@@ -102,7 +142,7 @@ export function Nav() {
           <button
             ref={magneticMenuRef}
             onClick={() => setMenuOpen(true)}
-            className="t-label flex items-center gap-2 rounded-full border border-black/15 bg-white px-5 py-2.5 text-bone font-bold shadow-sm transition-all duration-300 hover:border-ember hover:text-ember hover:shadow-md"
+            className="t-label flex items-center gap-2 rounded-full border border-bone/40 bg-ink-900/60 px-5 py-2.5 backdrop-blur-md text-bone font-bold transition-all duration-300 hover:border-ember hover:text-ember"
             onMouseEnter={() => setVariant("ring")}
             onMouseLeave={() => setVariant("default")}
           >

@@ -45,7 +45,7 @@ const SUV_MODELS = [
     power: "132 BHP",
     torque: "300 Nm",
     drive: "RWD mHawk",
-    glow: "#B8860B",
+    glow: "#C6A15B",
     src: "https://auto.mahindra.com/dw/image/v2/BKRC_PRD/on/demandware.static/-/Sites-mahindra-product-catalog/default/dw95797f68/images/SCRC/large/ScorpioClassic_602x339.png",
   },
   {
@@ -86,7 +86,7 @@ const SUV_MODELS = [
     power: "100 BHP",
     torque: "260 Nm",
     drive: "mHawk75",
-    glow: "#B8860B",
+    glow: "#C6A15B",
     src: "https://auto.mahindra.com/dw/image/v2/BKRC_PRD/on/demandware.static/-/Sites-mahindra-product-catalog/default/dw24e99287/images/NEO/large/BoleroNeo_602x339.png",
   },
   {
@@ -96,7 +96,7 @@ const SUV_MODELS = [
     power: "120 BHP",
     torque: "280 Nm",
     drive: "mHawk2.2",
-    glow: "#B8860B",
+    glow: "#C6A15B",
     src: "https://auto.mahindra.com/dw/image/v2/BKRC_PRD/on/demandware.static/-/Sites-mahindra-product-catalog/default/dwc6625064/images/NEOP/large/BoleroNeoPlus_602x339.png",
   },
   {
@@ -128,7 +128,7 @@ export function SUVRail() {
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
             <p className="t-label text-ember mb-3 font-bold">(03) HIGH-DEFINITION LINEUP</p>
-            <h2 className="t-h1">EXPLORE MAHINDRA RANGE</h2>
+            <h2 className="t-h1 text-bone">EXPLORE MAHINDRA RANGE</h2>
           </div>
           <span className="t-label text-gold font-mono text-sm font-bold">
             SWIPE / SCROLL FOR SPECIFICATIONS →
@@ -157,7 +157,7 @@ function VehicleCard({
 
   return (
     <div
-      className="group relative flex h-[540px] w-[85vw] md:w-[45vw] lg:w-[32vw] shrink-0 flex-col justify-between rounded-3xl bg-white p-8 border border-black/10 shadow-lg transition-all duration-500 hover:border-ember hover:shadow-2xl hover:shadow-ember/10"
+      className="group relative flex h-[540px] w-[85vw] md:w-[45vw] lg:w-[32vw] shrink-0 flex-col justify-between rounded-3xl bg-ink-800 p-8 border border-line transition-all duration-500 hover:border-ember hover:shadow-2xl hover:shadow-ember/20"
       onMouseEnter={() => {
         setVariant("view");
         setCursorText("SPECS");
@@ -184,7 +184,7 @@ function VehicleCard({
       <div className="relative my-auto h-[220px] w-full flex items-center justify-center">
         {/* Dynamic Under-Car Glow Reflection */}
         <div
-          className="pointer-events-none absolute bottom-0 h-12 w-4/5 rounded-full blur-2xl opacity-20 transition-opacity duration-500 group-hover:opacity-60"
+          className="pointer-events-none absolute bottom-0 h-12 w-4/5 rounded-full blur-2xl opacity-30 transition-opacity duration-500 group-hover:opacity-70"
           style={{ backgroundColor: model.glow }}
         />
 
@@ -206,18 +206,18 @@ function VehicleCard({
       </div>
 
       {/* Footer Info & Engine Specs */}
-      <div className="z-10 border-t border-line pt-4">
+      <div className="z-10 border-t border-line/60 pt-4">
         <h3 className="t-h2 text-bone text-2xl group-hover:text-ember transition-colors mb-4 font-bold">
           {model.name}
         </h3>
 
         {/* 3 Spec Badges */}
-        <div className="grid grid-cols-3 gap-2 mb-4 bg-ink-900 p-3 rounded-xl border border-line text-center">
+        <div className="grid grid-cols-3 gap-2 mb-4 bg-ink-900/80 p-3 rounded-xl border border-line/50 text-center">
           <div>
             <p className="text-[10px] t-label text-bone-dim font-bold">POWER</p>
             <p className="text-xs font-bold font-mono text-bone">{model.power}</p>
           </div>
-          <div className="border-x border-line">
+          <div className="border-x border-line/50">
             <p className="text-[10px] t-label text-bone-dim font-bold">TORQUE</p>
             <p className="text-xs font-bold font-mono text-bone">{model.torque}</p>
           </div>
