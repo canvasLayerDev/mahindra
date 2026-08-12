@@ -14,32 +14,9 @@ export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const { setVariant } = useCursor();
-  const magneticMenuRef = useMagnetic<HTMLButtonElement>({ radius: 60, maxDistance: 10 });
+  const magneticMenuRef = useMagnetic<HTMLAnchorElement>({ radius: 60, maxDistance: 10 });
 
-  // Hide on scroll-down, reveal on scroll-up
-  useEffect(() => {
-    const nav = navRef.current;
-    if (!nav) return;
 
-    let lastScrollY = window.scrollY;
-    const yTo = gsap.quickTo(nav, "yPercent", {
-      duration: 0.4,
-      ease: "power2.out",
-    });
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > 100 && currentScrollY > lastScrollY && !menuOpen) {
-        yTo(-100);
-      } else {
-        yTo(0);
-      }
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuOpen]);
 
   return (
     <>
@@ -147,23 +124,23 @@ export function Nav() {
             onMouseLeave={() => setVariant("default")}
           >
             <Image
-              src="https://www.mahindra.com/sites/default/files/2025-07/mahindra-red-logo.webp"
-              alt="Mahindra Rise"
-              fill
-              sizes="(max-width: 1024px) 150px, 180px"
+              src="https://www.mahindra.com/sites/default/files/2025-10/80thYearLogo_Gold.webp"
+              alt="80th Year Gold Logo"
+              width={64}
+              height={64}
               priority
-              className="object-contain object-left"
+              style={{ width: "auto", height: "auto" }}
+              className="h-7 w-auto object-contain hidden sm:block"
             />
-          </Link>
+          </div>
 
           {/* Center/Right: Desktop Navigation Links */}
           <nav className="flex items-center gap-6 lg:gap-8">
             <div className="hidden md:flex items-center gap-6 lg:gap-8">
               <Link
                 href="/"
-                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
-                  pathname === "/" ? "text-ember" : "text-black hover:text-ember"
-                }`}
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${pathname === "/" ? "text-ember" : "text-black hover:text-ember"
+                  }`}
                 onMouseEnter={() => setVariant("ring")}
                 onMouseLeave={() => setVariant("default")}
               >
@@ -171,9 +148,8 @@ export function Nav() {
               </Link>
               <Link
                 href="/automotive"
-                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
-                  pathname === "/automotive" ? "text-ember" : "text-black hover:text-ember"
-                }`}
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${pathname === "/automotive" ? "text-ember" : "text-black hover:text-ember"
+                  }`}
                 onMouseEnter={() => setVariant("ring")}
                 onMouseLeave={() => setVariant("default")}
               >
@@ -189,9 +165,8 @@ export function Nav() {
               </Link>
               <Link
                 href="/about"
-                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${
-                  pathname === "/about" ? "text-ember" : "text-black hover:text-ember"
-                }`}
+                className={`font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-300 ${pathname === "/about" ? "text-ember" : "text-black hover:text-ember"
+                  }`}
                 onMouseEnter={() => setVariant("ring")}
                 onMouseLeave={() => setVariant("default")}
               >
